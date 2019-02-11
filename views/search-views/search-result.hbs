@@ -1,0 +1,16 @@
+<h2>The cocktail you are looking for:</h2>
+
+
+<h3>{{drinkItem.strDrink}}</h3>
+
+<b>Ingredients: </b>
+{{#each drinkItem.strIngredMeasure}}
+{{this.Ingred}}
+{{/each}}
+
+<b>Measure:</b>
+{{#each drinkItem.strIngredMeasure}}{{this.Measure}}{{/each}}
+
+<p>Instructions</p>
+
+<p>{{drinkItem.strInstructions}}</p>
