@@ -55,6 +55,9 @@ app.locals.title = "Shake Shake";
 const index = require("./routes/index");
 app.use("/", index);
 
+const suggestions = require("./routes/suggestions-router.js");
+app.use("/", suggestions);
+
 const search = require("./routes/search-router.js");
 app.use("/", search);
 
