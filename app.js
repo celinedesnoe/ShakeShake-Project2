@@ -58,4 +58,7 @@ app.use("/", index);
 const search = require("./routes/search-router.js");
 app.use("/", search);
 
+const suggestions = require("./routes/suggestions-router.js");
+app.use("/", suggestions);
+
 module.exports = app;
