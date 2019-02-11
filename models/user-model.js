@@ -12,7 +12,8 @@ const userSchema = new Schema(
       required: true,
       enum: ["normal", "admin"],
       default: "normal"
-    }
+    },
+    ingredients: { type: Array }
   },
   {
     // additional settings for the Schema class defined here
