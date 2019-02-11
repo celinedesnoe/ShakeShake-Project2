@@ -1,25 +1,34 @@
-<h2>The cocktail you are looking for:</h2>
+<h2 class="d-flex justify-content-center text-center">The cocktail you are looking for:</h2>
 
 
-<h3>{{drinkItem.strDrink}}</h3>
+<h3 class="d-flex justify-content-center text-center">{{drinkItem.strDrink}}</h3>
 
-<b>Ingredients: </b>
-<ul>
-  {{#each drinkItem.strIngredMeasure}}
-  <li>
-    {{this.Ingred}}
-  </li>
-  {{/each}}
-</ul>
+<div class="d-flex justify-content-center">
+  <div class="div-marg">
+    <pclass="text-center"><b>Ingredients: </b></p>
 
-<b>Measure:</b>
-<ul>
-  {{#each drinkItem.strIngredMeasure}}
-  <li>
-    {{this.Measure}}
-  </li>
-  {{/each}}
-</ul>
-<b>Instructions</b>
+      {{#each drinkItem.strIngredMeasure}}
+      <p>
+        {{this.Ingred}}
+      </p>
+      {{/each}}
 
-<p>{{drinkItem.strInstructions}}</p>
+  </div>
+
+  <div class="div-marg">
+    <p class="text-center"><b>Measure:</b></p>
+
+    {{#each drinkItem.strIngredMeasure}}
+    <p>
+      {{this.Measure}}
+    </p>
+    {{/each}}
+
+  </div>
+</div>
+
+<div>
+  <h3 class="d-flex justify-content-center text-center">Instructions</h3>
+
+  <p class="text-center">{{drinkItem.strInstructions}}</p>
+</div>
