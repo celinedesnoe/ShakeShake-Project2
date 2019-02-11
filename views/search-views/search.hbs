@@ -8,3 +8,20 @@
     <button>Find my cocktail!</button>
   </form>
 </div>
+
+<div class="d-flex justify-content-center">
+  <form action="/search-result" method="GET">
+    <label>by Ingredients</label>
+    <input list="cocktails">
+
+    <datalist id="cocktails">
+      <option value="lemon"></option>
+
+      {{#each ingredArray}}
+      <option value="{{this}}"></option>
+      {{/each}}
+    </datalist>
+    <button>Find my cocktail!</button>
+
+  </form>
+</div>
