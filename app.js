@@ -55,4 +55,7 @@ app.locals.title = "Express - Generated with IronGenerator";
 const index = require("./routes/index");
 app.use("/", index);
 
+const search = require("./routes/search-router.js");
+app.use("/", search);
+
 module.exports = app;
