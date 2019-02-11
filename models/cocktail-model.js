@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+
 const cocktailSchema = new Schema(
   {
     strDrink: { type: String, required: true },
@@ -34,5 +35,5 @@ const cocktailSchema = new Schema(
   { timestamps: true }
 );
 
-const Cocktail = mongoose.model("Cocktail", cocktailSchema);
+const Cocktail = mongoose.model("Cocktail", cocktailSchema, "cocktailList");
 module.exports = Cocktail;

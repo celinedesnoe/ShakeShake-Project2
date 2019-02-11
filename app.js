@@ -11,7 +11,7 @@ const path = require("path");
 const Cocktail = require("./models/cocktail-model.js");
 
 mongoose
-  .connect("mongodb://localhost/express-library", { useNewUrlParser: true })
+  .connect("mongodb://localhost/cocktails", { useNewUrlParser: true })
   .then(x => {
     console.log(
       `Connected to Mongo! Database name: "${x.connections[0].name}"`
