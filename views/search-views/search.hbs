@@ -1,7 +1,27 @@
-<h2>Search for your favorite cocktai!</h2>
+<h2 class="d-flex justify-content-center text-center">Search for your favorite cocktai!</h2>
 
 
-<form action="/search-result" method="GET">
-  <input type="text" name="search_query">
-  <button>Find my cocktail!</button>
-</form>
+<div class="d-flex justify-content-center">
+  <form action="/search-result" method="GET">
+    <label>by Name</label>
+    <input type="text" name="search_query">
+    <button>Find my cocktail!</button>
+  </form>
+</div>
+
+<div class="d-flex justify-content-center">
+  <form action="/search-result" method="GET">
+    <label>by Ingredients</label>
+    <input list="cocktails">
+
+    <datalist id="cocktails">
+      <option value="lemon"></option>
+
+      {{#each ingredArray}}
+      <option value="{{this}}"></option>
+      {{/each}}
+    </datalist>
+    <button>Find my cocktail!</button>
+
+  </form>
+</div>

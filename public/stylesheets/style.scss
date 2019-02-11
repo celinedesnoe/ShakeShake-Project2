@@ -1,8 +1,34 @@
+// background blue: #282d4f
+// dark purple : #23103a
+// pink : #a0204c
+// orange: #ff6c00
+
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: "Lobster", cursive;
 }
 
 a {
-  color: #00B7FF;
+  color: #00b7ff;
+}
+
+.navdiy {
+  font-family: "Lobster", cursive;
+}
+
+h2 {
+  margin: 5%;
+}
+
+button {
+  background-color: #ff6c00;
+  color: white;
+  padding: 5px;
+  border-radius: 12px;
+  border-style: 0;
+}
+
+.div-marg {
+  margin: 2% 5%;
 }

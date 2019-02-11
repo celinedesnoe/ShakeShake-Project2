@@ -9,6 +9,7 @@ const mongoose = require("mongoose");
 const logger = require("morgan");
 const path = require("path");
 const Cocktail = require("./models/cocktail-model.js");
+const User = require("./models/user-model.js");
 
 mongoose
   .connect("mongodb://localhost/cocktails", { useNewUrlParser: true })
@@ -50,7 +51,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(favicon(path.join(__dirname, "public", "images", "favicon.ico")));
 
 // default value for title local
-app.locals.title = "Express - Generated with IronGenerator";
+app.locals.title = "Shake Shake";
 
 const index = require("./routes/index");
 app.use("/", index);

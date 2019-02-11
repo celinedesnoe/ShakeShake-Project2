@@ -1,8 +1,25 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: "Lobster", cursive; }
 
 a {
-  color: #00B7FF; }
+  color: #00b7ff; }
+
+.navdiy {
+  font-family: "Lobster", cursive; }
+
+h2 {
+  margin: 5%; }
+
+button {
+  background-color: #ff6c00;
+  color: white;
+  padding: 5px;
+  border-radius: 12px;
+  border-style: 0; }
+
+.div-marg {
+  margin: 2% 5%; }
 
 /*# sourceMappingURL=style.css.map */
