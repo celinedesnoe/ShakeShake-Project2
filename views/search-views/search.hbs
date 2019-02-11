@@ -4,3 +4,11 @@
   <input type="text" name="strDrink" placeholder="What are you looking for">
   <button>Find my cocktail!</button>
 </form>
+
+<ul>
+  {{#each ingredArray}}
+  <li>
+    {{this}}
+  </li>
+  {{/each}}
+</ul>
