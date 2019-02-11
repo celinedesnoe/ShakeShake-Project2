@@ -4,13 +4,22 @@
 <h3>{{drinkItem.strDrink}}</h3>
 
 <b>Ingredients: </b>
-{{#each drinkItem.strIngredMeasure}}
-{{this.Ingred}}
-{{/each}}
+<ul>
+  {{#each drinkItem.strIngredMeasure}}
+  <li>
+    {{this.Ingred}}
+  </li>
+  {{/each}}
+</ul>
 
 <b>Measure:</b>
-{{#each drinkItem.strIngredMeasure}}{{this.Measure}}{{/each}}
-
-<p>Instructions</p>
+<ul>
+  {{#each drinkItem.strIngredMeasure}}
+  <li>
+    {{this.Measure}}
+  </li>
+  {{/each}}
+</ul>
+<b>Instructions</b>
 
 <p>{{drinkItem.strInstructions}}</p>
