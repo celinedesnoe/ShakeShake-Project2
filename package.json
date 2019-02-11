@@ -20,5 +20,18 @@
   },
   "devDependencies": {
     "nodemon": "^1.12.1"
-  }
+  },
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/celinedesnoe/ShakeShake-Project2.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/celinedesnoe/ShakeShake-Project2/issues"
+  },
+  "homepage": "https://github.com/celinedesnoe/ShakeShake-Project2#readme",
+  "description": ""
 }
