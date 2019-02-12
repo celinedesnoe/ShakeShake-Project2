@@ -5,15 +5,15 @@
   <form action="/search-result-drink" method="GET">
     <label>by Name</label>
     <input type="text" name="search_query">
-    <button>Find my cocktail!</button>
+    <button>Find cocktails!</button>
   </form>
 </div>
 
 <div class="d-flex justify-content-center">
   <form action="/search-result-ingred" method="GET" id="ingred-list">
     <label>by Ingredients</label>
-
-    <input list="cocktails" type="text" name="search_query" placeholder="Enter your first ingredient">
+    <label>Ingredient 1</label>
+    <input list="cocktails" type="text" name="search_query">
 
     <datalist id="cocktails">
 
@@ -22,8 +22,8 @@
       {{/each}}
     </datalist>
 
-
-    <input list="cocktails" type="text" name="search_query" placeholder="Enter your second ingredient">
+    <label>Ingredient 2</label>
+    <input list="cocktails" type="text" name="search_query">
 
     <datalist id="cocktails">
       {{#each ingredArray}}
@@ -32,7 +32,7 @@
     </datalist>
 
 
-    <button>Find my cocktail!</button>
+    <button>Find cocktails!</button>
 
   </form>
 </div>

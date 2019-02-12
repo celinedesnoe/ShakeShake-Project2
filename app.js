@@ -106,4 +106,7 @@ app.use("/", auth);
 const search = require("./routes/search-router.js");
 app.use("/", search);
 
+const create = require("./routes/create-router.js");
+app.use("/", create);
+
 module.exports = app;
