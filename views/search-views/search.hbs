@@ -2,7 +2,7 @@
 
 
 <div class="d-flex justify-content-center">
-  <form action="/search-result" method="GET">
+  <form action="/search-result-drink" method="GET">
     <label>by Name</label>
     <input type="text" name="search_query">
     <button>Find my cocktail!</button>
@@ -10,13 +10,11 @@
 </div>
 
 <div class="d-flex justify-content-center">
-  <form action="/search-result" method="GET">
+  <form action="/search-result-ingred" method="GET">
     <label>by Ingredients</label>
-    <input list="cocktails">
+    <input list="cocktails" type="text" name="search_query">
 
     <datalist id="cocktails">
-      <option value="lemon"></option>
-
       {{#each ingredArray}}
       <option value="{{this}}"></option>
       {{/each}}
