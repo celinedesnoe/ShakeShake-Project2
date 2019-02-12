@@ -93,11 +93,10 @@ router.get("/search-result-ingred", (req, res, next) => {
   Cocktail.find({
     // "strIngredMeasure.Ingred": { $eq: /^search_drink_String$/i }
 
-    "strIngredMeasure.Ingred": {
-      $regex: search_drink_String,
-      $options: "i"
-    }
+    "strIngredMeasure.Ingred": search_drink_String
   })
+    .collation({ locale: "en_US", strength: 1 })
+
     .then(ingredDoc => {
       if (!ingredDoc) {
         res.render("search-views/search.hbs");
