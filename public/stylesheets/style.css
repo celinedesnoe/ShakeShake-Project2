@@ -28,4 +28,18 @@ button {
 .green {
   color: green; }
 
+.multi-col {
+  text-align: center;
+  column-width: 20em; }
+
+.tag {
+  margin-bottom: 15px;
+  break-inside: avoid;
+  background-color: #23103a;
+  color: white;
+  padding: 10px 0; }
+
+.shadow {
+  text-shadow: 2px 2px #ff6c00; }
+
 /*# sourceMappingURL=style.css.map */
