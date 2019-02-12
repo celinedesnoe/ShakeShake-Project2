@@ -2,73 +2,24 @@ const express = require("express");
 const Cocktail = require("../models/cocktail-model.js");
 const router = express.Router();
 
-// router.get("/search", (req, res, next) => {
-//   res.render("search-views/search.hbs");
-// });
-
-router.get("/search", (req, res, next) => {
-  var ingredients = [];
-  // function uniq(ingredients) {
-  //   return ingredients.sort().filter(function(item, pos, ary) {
-  //     return !pos || item != ary[pos - 1];
-  //   });
-  // }
-  Cocktail.distinct(`strIngredient9`).then(ingredResults => {
-    ingredResults.forEach(ingredient => {
-      ingredients.push(ingredient);
-    });
-  });
-  Cocktail.distinct(`strIngredient8`).then(ingredResults => {
-    ingredResults.forEach(ingredient => {
-      ingredients.push(ingredient);
-    });
-  });
-  Cocktail.distinct(`strIngredient7`).then(ingredResults => {
-    ingredResults.forEach(ingredient => {
-      ingredients.push(ingredient);
-    });
-  });
-  Cocktail.distinct(`strIngredient6`).then(ingredResults => {
-    ingredResults.forEach(ingredient => {
-      ingredients.push(ingredient);
-    });
-  });
-  Cocktail.distinct(`strIngredient5`).then(ingredResults => {
-    ingredResults.forEach(ingredient => {
-      ingredients.push(ingredient);
-    });
-  });
-  Cocktail.distinct(`strIngredient4`).then(ingredResults => {
-    ingredResults.forEach(ingredient => {
-      ingredients.push(ingredient);
-    });
-  });
-  Cocktail.distinct(`strIngredient3`).then(ingredResults => {
-    ingredResults.forEach(ingredient => {
-      ingredients.push(ingredient);
-    });
-  });
-  Cocktail.distinct(`strIngredient2`).then(ingredResults => {
-    ingredResults.forEach(ingredient => {
-      ingredients.push(ingredient);
-    });
-  });
-  Cocktail.distinct(`strIngredient1`)
-    .then(ingredResults => {
-      ingredResults.forEach(ingredient => {
-        ingredients.push(ingredient);
+router.get("/search", (req, res, rext) => {
+  Cocktail.find()
+    .then(result => {
+      const setIngredients = new Set();
+      result.forEach(cocktail => {
+        for (let i = 1; i <= 9; i++) {
+          let ingredient = cocktail["strIngredient" + i];
+          if (ingredient) {
+            setIngredients.add(ingredient.toLowerCase());
+          }
+        }
       });
-      var lowerCaseIngredients = ingredients.map(function(oneIngredient) {
-        return oneIngredient.toLowerCase();
-      });
-      var uniqueIngredients = lowerCaseIngredients.filter(function(item, pos) {
-        return lowerCaseIngredients.indexOf(item) == pos;
-      });
-      var sortedIngredients = uniqueIngredients.sort();
-
+      let ingredients = Array.from(setIngredients);
+      let sortedIngredients = ingredients.sort();
       res.locals.ingredArray = sortedIngredients;
       res.render("search-views/search.hbs");
     })
+
     .catch(err => next(err));
 });
 
