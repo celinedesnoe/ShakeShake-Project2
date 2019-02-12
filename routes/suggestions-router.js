@@ -110,10 +110,9 @@ router.get("/mybar", (req, res, rext) => {
   User.findById(req.user._id)
     .then(user => {
       res.locals.userIngredientsArray = user.ingredients;
-      console.log(user.ingredients);
     })
     .catch();
-  console.log(host);
+  // console.log(host);
   Cocktail.find()
     .then(result => {
       const setIngredients = new Set();
@@ -152,21 +151,29 @@ router.post("/process-bar", (req, res, next) => {
 });
 
 router.get("/suggestions", (req, res, next) => {
-  res.render("suggestion-views/suggestions.hbs");
-});
+  User.findById(req.user._id).then(user => {
+    userIngredientsArray = user.ingredients;
+  });
+  Cocktail.find()
 
-// router.get("/add-fav/:meal/:wineId", (req, res, next) => {
-//   const { meal, wineId } = req.params;
-//   User.findByIdAndUpdate(
-//     req.user._id,
-//     {$push: { favorites: {wine : wineId} }},
-//     {runValidators: true},
-//   )
-//   .populate("favorites")
-//     .then(data =>{
-//       res.redirect(`/wine-reco/${meal}`)
-//     })
-//     .catch(err => next(err))
-// })
+    .then(cocktails => {
+      const possibleCocktails = new Set();
+
+      cocktails.forEach(cocktail => {
+        for (let i = 1; i <= 9; i++) {
+          let ingredient = cocktail["strIngredient" + i];
+          if (ingredient) {
+            if (userIngredientsArray.includes(ingredient.toLowerCase())) {
+              possibleCocktails.add(cocktail);
+            }
+            console.log(possibleCocktails);
+          }
+        }
+      });
+
+      res.render("suggestion-views/suggestions.hbs");
+    })
+    .catch();
+});
 
 module.exports = router;
