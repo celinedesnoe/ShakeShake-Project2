@@ -14,6 +14,7 @@ const Cocktail = require("./models/cocktail-model.js");
 const User = require("./models/user-model.js");
 const MongoStore = require("connect-mongo")(session);
 const passport = require("passport");
+const helpers = require("handlebars-helpers")();
 
 // run the code inside the "passport-setup.js"
 require("./config/passport-setup");
@@ -52,6 +53,7 @@ app.use(
   })
 );
 hbs.registerPartials(path.join(__dirname, "views", "partials"));
+hbs.registerHelper(helpers);
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");

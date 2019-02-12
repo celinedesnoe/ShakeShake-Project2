@@ -73,7 +73,7 @@ router.get("/search", (req, res, next) => {
 });
 
 router.get("/search-result-drink", (req, res, next) => {
-  const { search_query } = req.query;
+  const { search_query } = req.query.toString();
   Cocktail.find({ strDrink: { $regex: search_query, $options: "i" } })
     .then(drinkDoc => {
       if (!drinkDoc) {
@@ -87,13 +87,9 @@ router.get("/search-result-drink", (req, res, next) => {
 });
 
 router.get("/search-result-ingred", (req, res, next) => {
-  var search_drink = req.query.search_query;
-  const search_drink_String = search_drink.toString(search_drink);
-  console.log(search_drink_String);
+  const { search_query } = req.query;
   Cocktail.find({
-    // "strIngredMeasure.Ingred": { $eq: /^search_drink_String$/i }
-
-    "strIngredMeasure.Ingred": search_drink_String
+    "strIngredMeasure.Ingred": search_query
   })
     .collation({ locale: "en_US", strength: 1 })
 
@@ -101,9 +97,10 @@ router.get("/search-result-ingred", (req, res, next) => {
       if (!ingredDoc) {
         res.render("search-views/search.hbs");
       } else {
+        res.locals.search_ingredient = search_query;
         res.locals.ingredArray = ingredDoc;
+
         res.render("search-views/search-result-ingred.hbs");
-        // console.log(ingredDoc);
       }
     })
     .catch(err => next(err));
