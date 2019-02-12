@@ -10,15 +10,28 @@
 </div>
 
 <div class="d-flex justify-content-center">
-  <form action="/search-result-ingred" method="GET">
+  <form action="/search-result-ingred" method="GET" id="ingred-list">
     <label>by Ingredients</label>
-    <input list="cocktails" type="text" name="search_query">
+
+    <input list="cocktails" type="text" name="search_query" placeholder="Enter your first ingredient">
+
+    <datalist id="cocktails">
+
+      {{#each ingredArray}}
+      <option value="{{this}}"></option>
+      {{/each}}
+    </datalist>
+
+
+    <input list="cocktails" type="text" name="search_query" placeholder="Enter your second ingredient">
 
     <datalist id="cocktails">
       {{#each ingredArray}}
       <option value="{{this}}"></option>
       {{/each}}
     </datalist>
+
+
     <button>Find my cocktail!</button>
 
   </form>

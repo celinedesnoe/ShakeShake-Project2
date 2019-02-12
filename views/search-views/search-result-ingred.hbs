@@ -1,20 +1,23 @@
-<h2 class="d-flex justify-content-center text-center">The cocktails you can do with:</h2>
+<h2 class="d-flex justify-content-center text-center">The cocktails you can do with:
 
-{{titleize search_ingredient}}
+  {{#each search_ingredient}}
+  <br>
+  {{titleize this}}
+  {{/each}}
+</h2>
 
 
 
 {{#each ingredArray}}
 <h3 class="d-flex justify-content-center text-center">{{this.strDrink}}</h3>
 
-<p>Searched Ingredients : {{../search_ingredient}} </p>
-
 <div class="d-flex justify-content-center">
   <div class="div-marg">
     <p class="text-center"><b>Ingredients: </b></p>
 
     {{#each this.strIngredMeasure}}
-    {{#if (is (downcase this.Ingred) (downcase ../../search_ingredient)) }}
+
+    {{#contains ../../search_ingredient (downcase this.Ingred) }}
 
     <p class="green">
       {{this.Ingred}}
@@ -23,7 +26,8 @@
     <p class="red">
       {{this.Ingred}}
     </p>
-    {{/if}}
+    {{/contains}}
+
     {{/each}}
 
   </div>
