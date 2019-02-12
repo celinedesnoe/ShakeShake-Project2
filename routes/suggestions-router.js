@@ -105,7 +105,15 @@ const User = require("../models/user-model.js");
 //   }
 // }
 
-router.get("/suggestions", (req, res, rext) => {
+router.get("/mybar", (req, res, rext) => {
+  const host = req.user._id;
+  User.findById(req.user._id)
+    .then(user => {
+      res.locals.userIngredientsArray = user.ingredients;
+      console.log(user.ingredients);
+    })
+    .catch();
+  console.log(host);
   Cocktail.find()
     .then(result => {
       const setIngredients = new Set();
@@ -121,7 +129,7 @@ router.get("/suggestions", (req, res, rext) => {
           }
         }
       });
-      console.log(setIngredients);
+      // console.log(setIngredients);
       let ingredients = Array.from(setIngredients);
       //       console.log(ingredients);
       res.locals.ingredArray = ingredients;
@@ -133,14 +141,18 @@ router.get("/suggestions", (req, res, rext) => {
 
 router.post("/process-bar", (req, res, next) => {
   const { ingredient } = req.body;
-  console.log("coucoucoucoucoucou", req.body);
+
   User.findByIdAndUpdate(
     req.user._id,
     { $push: { ingredients: ingredient } },
     { runValidators: true, new: true }
   )
-    .then(() => res.redirect(`/suggestions`))
+    .then(() => res.redirect(`/mybar`))
     .catch(err => next(err));
+});
+
+router.get("/suggestions", (req, res, next) => {
+  res.render("suggestion-views/suggestions.hbs");
 });
 
 // router.get("/add-fav/:meal/:wineId", (req, res, next) => {
