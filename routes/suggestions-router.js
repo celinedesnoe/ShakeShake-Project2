@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Cocktail = require("../models/cocktail-model.js");
+const Ingredient = require("../models/ingredient-model.js");
 
 router.get("/suggestions", (req, res, next) => {
   var ingredients = [];
@@ -73,6 +74,14 @@ router.get("/suggestions", (req, res, next) => {
       res.locals.ingredArray = uniqueIngredients;
       res.render("suggestion-views/bar-input.hbs", ingredResults);
     })
+    .catch(err => next(err));
+});
+
+router.post("/process-bar", (req, res, next) => {
+  const { ingredient } = req.body;
+  console.log(req.body);
+  Ingredient.create({ ingredient })
+    .then(res.render("suggestion-views/bar-input.hbs"))
     .catch(err => next(err));
 });
 

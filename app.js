@@ -8,7 +8,15 @@ const hbs = require("hbs");
 const mongoose = require("mongoose");
 const logger = require("morgan");
 const path = require("path");
+const session = require("express-session");
+const flash = require("connect-flash");
 const Cocktail = require("./models/cocktail-model.js");
+const User = require("./models/user-model.js");
+const MongoStore = require("connect-mongo")(session);
+const passport = require("passport");
+
+// run the code inside the "passport-setup.js"
+require("./config/passport-setup");
 
 mongoose
   .connect("mongodb://localhost/cocktails", { useNewUrlParser: true })
@@ -43,11 +51,43 @@ app.use(
     sourceMap: true
   })
 );
+hbs.registerPartials(path.join(__dirname, "views", "partials"));
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
 app.use(express.static(path.join(__dirname, "public")));
 app.use(favicon(path.join(__dirname, "public", "images", "favicon.ico")));
+
+app.use(
+  session({
+    // saveUninitialized and resave are just to avoir error messages
+    saveUninitialized: true,
+    resase: true,
+    // secret should be a string that's different for every app
+    secret: "ca^khT8KYd,G73C7R9(;^atb?h>FTWdbn4pqEFUKs3",
+    // store our session data inside our Mongodb with the connect-mongo package
+    store: new MongoStore({ mongooseConnection: mongoose.connection })
+  })
+);
+//PASSORT'S LINES MUST BE BELOW SESSION
+//set up passport's methods to use in our routes (properties and methods for "req")
+app.use(passport.initialize());
+//make passport manage our user session
+app.use(passport.session());
+// allow  our routes to use FLASH MESSAGES (feedback mesages before redirects)
+// flash messages need sessions to work
+app.use(flash());
+app.use((req, res, next) => {
+  // send flash messages to the hbs file
+  // (req.flash() comes from the "connect-flash" npm package)
+  res.locals.messages = req.flash();
+  // req.user is defined by Passport and contains the logged-in user's info
+  res.locals.currentUser = req.user;
+
+  //tell express we are ready to move to the routes now
+  // you need this or your pages will stay loading forever
+  next();
+});
 
 // default value for title local
 app.locals.title = "Shake Shake";
@@ -57,6 +97,9 @@ app.use("/", index);
 
 const suggestions = require("./routes/suggestions-router.js");
 app.use("/", suggestions);
+
+const auth = require("./routes/auth-router.js");
+app.use("/", auth);
 
 const search = require("./routes/search-router.js");
 app.use("/", search);

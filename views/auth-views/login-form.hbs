@@ -1,0 +1,16 @@
+{{>flash_messages}}
+
+<h2>Log in</h2>
+
+<form action="/process-login" method="POST">
+  <label>
+    Email : <input type="email" name="email" placeholder="qira@solo.com " required />
+  </label>
+
+  <label>
+    Password : <input type="password" name="originalPassword" placeholder="It's a secret " required />
+  </label>
+
+  <button>Log In</button>
+
+</form>

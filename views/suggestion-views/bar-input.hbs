@@ -4,6 +4,9 @@
 
 {{#each ingredArray}}
 
-<h3>{{this}}</h3>
+
+<form action="/process-bar" method="POST">
+  <button name="{{this}}">{{this}}</button>
+</form>
 
 {{/each}}
