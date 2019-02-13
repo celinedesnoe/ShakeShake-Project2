@@ -166,9 +166,38 @@ router.get("/suggestions", (req, res, next) => {
             if (userIngredientsArray.includes(ingredient.toLowerCase())) {
               possibleCocktails.add(cocktail);
             }
-            console.log(possibleCocktails);
+            // console.log(possibleCocktails);
           }
         }
+      });
+      possibleCocktails.forEach(cocktail => {
+        cocktail.ingredientsDifference = cocktail.strIngredAll.length;
+        // console.log("cocktail difference", cocktail.ingredientsDifference);
+        for (let i = 1; i <= 9; i++) {
+          let ingredient = cocktail["strIngredient" + i];
+          if (ingredient) {
+            if (userIngredientsArray.includes(ingredient.toLowerCase())) {
+              cocktail.ingredientsInCommon++;
+              cocktail.ingredientsDifference--;
+              // console.log(cocktail.ingredientsDifference);
+              // console.log("cocktail mis a jour", cocktail);
+            }
+          }
+        }
+      });
+      let possibleCocktailsArray = Array.from(possibleCocktails);
+      possibleCocktailsArray.sort(
+        (a, b) => a.ingredientsDifference - b.ingredientsDifference
+      );
+      const recommendedIngredients = new Set();
+
+      possibleCocktailsArray.forEach(cocktail => {
+        cocktail.strIngredAll.forEach(ingredient => {
+          if (!userIngredientsArray.includes(ingredient.toLowerCase())) {
+            recommendedIngredients.add(ingredient.toLowerCase());
+          }
+        });
+        console.log(recommendedIngredients);
       });
 
       res.render("suggestion-views/suggestions.hbs");

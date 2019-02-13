@@ -42,7 +42,10 @@ const cocktailSchema = new Schema(
     strMeasure7: { type: String },
     strMeasure8: { type: String },
     strMeasure9: { type: String },
-    strIngredMeasure: { type: Array, items: Object }
+    strIngredMeasure: { type: Array, items: Object },
+    strIngredAll: { type: Array },
+    ingredientsInCommon: { type: Number, default: 0 },
+    ingredientsDifference: { type: Number, default: 0 }
   },
   { timestamps: true }
 );
