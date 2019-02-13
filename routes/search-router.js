@@ -1,8 +1,9 @@
 const express = require("express");
 const Cocktail = require("../models/cocktail-model.js");
+const User = require("../models/user-model.js");
 const router = express.Router();
 
-router.get("/search", (req, res, rext) => {
+router.get("/search", (req, res, next) => {
   Cocktail.find()
     .then(result => {
       const setCocktails = result;
@@ -18,12 +19,29 @@ router.get("/search", (req, res, rext) => {
       let ingredients = Array.from(setIngredients);
       let sortedIngredients = ingredients.sort();
       res.locals.ingredArray = sortedIngredients;
-      res.locals.cocktailArray = setCocktails;
+
+      function shuffle(a) {
+        var j, x, i;
+        for (i = a.length - 1; i > 0; i--) {
+          j = Math.floor(Math.random() * (i + 1));
+          x = a[i];
+          a[i] = a[j];
+          a[j] = x;
+        }
+        return a;
+      }
+
+      let setCocktailsRandom = shuffle(setCocktails).slice(0, 20);
+      res.locals.cocktailArray = setCocktailsRandom;
       res.render("search-views/search.hbs");
     })
 
     .catch(err => next(err));
 });
+
+//###############################################################
+//Search according to the name of the cocktails
+//###############################################################
 
 router.get("/search-result-drink", (req, res, next) => {
   const { search_query } = req.query;
@@ -39,9 +57,31 @@ router.get("/search-result-drink", (req, res, next) => {
     .catch(err => next(err));
 });
 
+//###############################################################
+//Search according to the ingredients
+//###############################################################
+
 router.get("/search-result-ingred", (req, res, next) => {
   const { search_query } = req.query;
   var drinks = [];
+
+  //-----------------------------------------------------------------
+  //Find the cocktails that have been created
+  //BY USER LOGGED IN to be in the top of the array
+  //-----------------------------------------------------------------
+  User.findById(req.user._id).then(userDoc => {
+    const userCocktails = userDoc.cocktailCreated;
+    console.log(userDoc);
+    userCocktails.forEach(drink => {
+      drinks.push(drink);
+    });
+  });
+
+  //-----------------------------------------------------------------
+  //Find the cocktails
+  //WITH THE TWO INGREDIENTS
+  //-----------------------------------------------------------------
+
   Cocktail.find({
     $and: [
       {
@@ -56,6 +96,12 @@ router.get("/search-result-ingred", (req, res, next) => {
         drinks.push(drink);
       });
     });
+
+  //-----------------------------------------------------------------
+  //Find the cocktails
+  //WITH ONE OF THE TWO INGREDIENTS
+  //-----------------------------------------------------------------
+
   Cocktail.find({
     $or: [
       {

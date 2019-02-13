@@ -1,11 +1,25 @@
 <h2>Add a cocktail</h2>
 
-<form action="" method="">
+<form action="/process-cocktail/{{cocktailItem._id}}" method="POST">
   <label>
     Drink Name:
     <input type="text" name="strDrink">
   </label>
 
+  <label>
+    Ingredient:
+    <input type="text" name="strIngredient1">
+  </label>
 
-  <button> </button>
+  <label>
+    Instructions:
+    <input type="text" name="strInstructions">
+  </label>
+
+  <label>
+    Created by:
+    <input type="text" name="userCreated" default="true">
+  </label>
+
+  <button> Add it </button>
 </form>

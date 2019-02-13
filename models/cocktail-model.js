@@ -23,8 +23,8 @@ const cocktailSchema = new Schema(
     strDrinkThumb: { type: String },
     strGlass: { type: String },
     strIBA: { type: String },
-    strIngredient1: { type: String, required: true },
-    strIngredient2: { type: String, required: true },
+    strIngredient1: { type: String },
+    strIngredient2: { type: String },
     strIngredient3: { type: String },
     strIngredient4: { type: String },
     strIngredient5: { type: String },
@@ -33,8 +33,8 @@ const cocktailSchema = new Schema(
     strIngredient8: { type: String },
     strIngredient9: { type: String },
     strInstructions: { type: String, required: true },
-    strMeasure1: { type: String, required: true },
-    strMeasure2: { type: String, required: true },
+    strMeasure1: { type: String },
+    strMeasure2: { type: String },
     strMeasure3: { type: String },
     strMeasure4: { type: String },
     strMeasure5: { type: String },
@@ -45,7 +45,8 @@ const cocktailSchema = new Schema(
     strIngredMeasure: { type: Array, items: Object },
     strIngredAll: { type: Array },
     ingredientsInCommon: { type: Number, default: 0 },
-    ingredientsDifference: { type: Number, default: 0 }
+    ingredientsDifference: { type: Number, default: 0 },
+    userCreated: { type: Boolean, default: false }
   },
   { timestamps: true }
 );
