@@ -205,8 +205,17 @@ router.get("/suggestions", (req, res, next) => {
 
       possibleCocktailsArray.forEach(cocktail => {
         cocktail.strIngredAll.forEach(ingredient => {
+          score = 0;
           if (!userIngredientsArray.includes(ingredient.toLowerCase())) {
-            recommendedIngredients.add(ingredient.toLowerCase());
+            cocktails.forEach(cocktail => {
+              if (cocktail.strIngredAll.includes(ingredient)) {
+                score++;
+              }
+            });
+            recommendedIngredients.add({
+              name: ingredient.toLowerCase(),
+              score: score
+            });
           }
         });
         // console.log(recommendedIngredients);
