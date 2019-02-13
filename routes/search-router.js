@@ -135,13 +135,27 @@ router.get("/search-result-ingred/:ingredID", (req, res, next) => {
     .collation({ locale: "en_US", strength: 1 })
     .then(drinkResults => {
       drinkResults.forEach(drink => {
-        console.log("coucou", req.body);
         drinks.push(drink);
       });
 
       res.locals.search_ingredient = search_query;
       res.locals.ingredArray = drinks;
       res.render("search-views/search-result-ingred.hbs");
+    })
+    .catch(err => next(err));
+});
+
+router.get("/search/:drinkID", (req, res, next) => {
+  console.log(req.params.drinkID);
+  const search_query = req.params.drinkID;
+  Cocktail.find({ strDrink: { $regex: search_query, $options: "i" } })
+    .then(drinkDoc => {
+      if (!drinkDoc) {
+        res.render("search-views/search.hbs");
+      } else {
+        res.locals.drinkArray = drinkDoc;
+        res.render("search-views/search-result-drink.hbs");
+      }
     })
     .catch(err => next(err));
 });
