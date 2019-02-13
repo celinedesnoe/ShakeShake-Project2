@@ -137,4 +137,27 @@ router.get("/search-result-ingred", (req, res, next) => {
     .catch(err => next(err));
 });
 
+router.get("/search-result-ingred/:ingredID", (req, res, next) => {
+  const search_query = req.params.ingredID;
+  var drinks = [];
+  console.log("req.params :", req.params.ingredID);
+  console.log(search_query);
+
+  Cocktail.find({
+    strIngredAll: search_query
+  })
+    .collation({ locale: "en_US", strength: 1 })
+    .then(drinkResults => {
+      drinkResults.forEach(drink => {
+        console.log("coucou", req.body);
+        drinks.push(drink);
+      });
+
+      res.locals.search_ingredient = search_query;
+      res.locals.ingredArray = drinks;
+      res.render("search-views/search-result-ingred.hbs");
+    })
+    .catch(err => next(err));
+});
+
 module.exports = router;

@@ -1,3 +1,7 @@
 {{#each recommendedIngredientsArray}}
-<h2>{{this}}</h2>
+<h2>{{this.name}}</h2>
+<h4>This ingredient is used in <a href="/search-result-ingred/{{this.name}}" method:"POST"
+    value="{{this.name}}" />{{this.score}}
+  cocktails !</a>
+</h4>
 {{/each}}

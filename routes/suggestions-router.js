@@ -8,9 +8,10 @@ router.get("/mybar", (req, res, rext) => {
   const host = req.user._id;
   User.findById(req.user._id)
     .then(user => {
+      userIngredientsArray = user.ingredients;
       res.locals.userIngredientsArray = user.ingredients;
     })
-    .catch();
+    .catch(err => next(err));
   // console.log(host);
   Cocktail.find()
     .then(result => {
@@ -29,6 +30,16 @@ router.get("/mybar", (req, res, rext) => {
       });
       // console.log(setIngredients);
       let ingredients = Array.from(setIngredients);
+      userIngredientsArray.forEach(ingredient => {
+        if (ingredients.includes(ingredient)) {
+          var index = ingredients.indexOf(ingredient); // <-- Not supported in <IE9
+          if (index !== -1) {
+            ingredients.splice(index, 1);
+            // console.log(ingredient);
+          }
+        }
+      });
+
       //       console.log(ingredients);
       res.locals.ingredArray = ingredients;
       res.render("suggestion-views/bar-input.hbs");
@@ -42,6 +53,7 @@ router.post("/process-bar", (req, res, next) => {
 
   User.findByIdAndUpdate(
     req.user._id,
+
     { $push: { ingredients: ingredient } },
     { runValidators: true, new: true }
   )
@@ -104,8 +116,17 @@ router.get("/suggestions", (req, res, next) => {
 
       possibleCocktailsArray.forEach(cocktail => {
         cocktail.strIngredAll.forEach(ingredient => {
+          score = 0;
           if (!userIngredientsArray.includes(ingredient.toLowerCase())) {
-            recommendedIngredients.add(ingredient.toLowerCase());
+            cocktails.forEach(cocktail => {
+              if (cocktail.strIngredAll.includes(ingredient)) {
+                score++;
+              }
+            });
+            recommendedIngredients.add({
+              name: ingredient.toLowerCase(),
+              score: score
+            });
           }
         });
         // console.log(recommendedIngredients);
