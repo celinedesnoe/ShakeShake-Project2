@@ -13,7 +13,11 @@ const userSchema = new Schema(
       enum: ["normal", "admin"],
       default: "normal"
     },
-    ingredients: { type: Array }
+    ingredients: { type: Array },
+    cocktailCreated: {
+      type: Array,
+      items: { type: Schema.Types.ObjectId, ref: "Cocktail" }
+    }
   },
   {
     // additional settings for the Schema class defined here
