@@ -185,10 +185,20 @@ router.get("/suggestions", (req, res, next) => {
           }
         }
       });
-      // possibleCocktails.sort(
-      //   (a, b) => a.ingredientsDifference - b.ingredientsDifference
-      // );
-      console.log(possibleCocktails);
+      let possibleCocktailsArray = Array.from(possibleCocktails);
+      possibleCocktailsArray.sort(
+        (a, b) => a.ingredientsDifference - b.ingredientsDifference
+      );
+      const recommendedIngredients = new Set();
+
+      possibleCocktailsArray.forEach(cocktail => {
+        cocktail.strIngredAll.forEach(ingredient => {
+          if (!userIngredientsArray.includes(ingredient.toLowerCase())) {
+            recommendedIngredients.add(ingredient.toLowerCase());
+          }
+        });
+        console.log(recommendedIngredients);
+      });
 
       res.render("suggestion-views/suggestions.hbs");
     })
