@@ -1,53 +1,94 @@
-<h2 class="d-flex justify-content-center text-center">The cocktails you can do with:
-
-  {{#each search_ingredient}}
-  <br>
-  {{titleize this}}
-  {{/each}}
-</h2>
-
-
-
-{{#each ingredArray}}
-<h3 class="d-flex justify-content-center text-center">{{this.strDrink}}</h3>
-
-<div class="d-flex justify-content-center">
-  <div class="div-marg">
-    <p class="text-center"><b>Ingredients: </b></p>
-
-    {{#each this.strIngredMeasure}}
-
-    {{#contains ../../search_ingredient (downcase this.Ingred) }}
-
-    <p class="green">
-      {{this.Ingred}}
-    </p>
-    {{else}}
-    <p class="red">
-      {{this.Ingred}}
-    </p>
-    {{/contains}}
-
-    {{/each}}
-
-  </div>
-
-  <div class="div-marg">
-    <p class="text-center"><b>Measure:</b></p>
-
-    {{#each this.strIngredMeasure}}
-    <p>
-      {{this.Measure}}
-    </p>
-    {{/each}}
-
-  </div>
-</div>
+{{!-- <h2 class="d-flex justify-content-center text-center">The cocktails you can do with: --}}
 
 <div>
-  <h3 class="d-flex justify-content-center text-center">Instructions</h3>
 
-  <p class="text-center">{{this.strInstructions}}</p>
+  <div class="d-flex justify-content-center">
+    <form action="/search-result-drink" method="GET">
+      <label>by Name</label>
+      <input type="text" name="search_query" default="{{search_query}}">
+      <button>Find cocktails!</button>
+    </form>
+  </div>
+
+  <div class="d-flex justify-content-center">
+    <form action="/search-result-ingred" method="GET" id="ingred-list">
+      <label>by Ingredients</label>
+      <label>Ingredient 1</label>
+      <input list="cocktails" type="text" name="search_query" default="{{search_query}}">
+
+      <datalist id="cocktails">
+
+        {{#each ingredArray}}
+        <option value="{{this}}"></option>
+        {{/each}}
+      </datalist>
+
+      <label>Ingredient 2</label>
+      <input list="cocktails" type="text" name="search_query" default="{{search_query}}">
+
+      <datalist id="cocktails">
+        {{#each ingredArray}}
+        <option value="{{this}}"></option>
+        {{/each}}
+      </datalist>
+
+
+      <button>Find cocktails!</button>
+
+    </form>
+  </div>
+
+
 </div>
 
-{{/each}}
+<main class="multi-col">
+
+  {{#each ingredArray}}
+
+  <div class="tag">
+
+    <h3 class="d-flex justify-content-center text-center">{{this.strDrink}}</h3>
+
+    <div class="d-flex justify-content-center">
+      <div class="div-marg">
+        <p class="text-center"><b>Ingredients: </b></p>
+
+        {{#each this.strIngredMeasure}}
+
+        {{#contains ../../search_ingredient (downcase this.Ingred) }}
+
+        <p class="green">
+          {{this.Ingred}}
+        </p>
+        {{else}}
+        <p class="red">
+          {{this.Ingred}}
+        </p>
+        {{/contains}}
+
+        {{/each}}
+
+      </div>
+
+      <div class="div-marg">
+        <p class="text-center"><b>Measure:</b></p>
+
+        {{#each this.strIngredMeasure}}
+        <p>
+          {{this.Measure}}
+        </p>
+        {{/each}}
+
+      </div>
+    </div>
+
+    <div>
+      <h3 class="d-flex justify-content-center text-center">Instructions</h3>
+
+      <p class="text-center">{{this.strInstructions}}</p>
+    </div>
+  </div>
+
+  {{/each}}
+
+</main>

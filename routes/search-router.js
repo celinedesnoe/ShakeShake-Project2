@@ -5,6 +5,7 @@ const router = express.Router();
 router.get("/search", (req, res, rext) => {
   Cocktail.find()
     .then(result => {
+      const setCocktails = result;
       const setIngredients = new Set();
       result.forEach(cocktail => {
         for (let i = 1; i <= 9; i++) {
@@ -17,6 +18,7 @@ router.get("/search", (req, res, rext) => {
       let ingredients = Array.from(setIngredients);
       let sortedIngredients = ingredients.sort();
       res.locals.ingredArray = sortedIngredients;
+      res.locals.cocktailArray = setCocktails;
       res.render("search-views/search.hbs");
     })
 

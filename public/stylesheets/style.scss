@@ -7,14 +7,27 @@ body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   font-family: "Lobster", cursive;
+  // background-color: #ff6c00;
 }
 
 a {
   color: #00b7ff;
 }
 
-.navdiy {
+.navbar-custom {
   font-family: "Lobster", cursive;
+  background-color: #282d4f;
+  color: #fff;
+}
+
+.nav-link-custom {
+  color: #fff;
+}
+
+.img-nav {
+  height: 20%;
+  width: 20%;
+  border-radius: 50%;
 }
 
 h2 {
@@ -34,7 +47,7 @@ button {
 }
 
 .red {
-  color: red;
+  color: lightgrey;
 }
 
 .green {
@@ -44,6 +57,7 @@ button {
 .multi-col {
   text-align: center;
   column-width: 20em;
+  margin: auto;
 }
 
 .tag {
@@ -51,10 +65,14 @@ button {
   break-inside: avoid;
   background-color: #282d4f;
   color: white;
-  padding: 10px 0;
+  padding: 10px 10px;
 }
 
-.shadow {
+.shadow-title {
   text-shadow: 2px 2px #ff6c00;
-  // background-color: #282d4f;
+  box-shadow: none;
+}
+
+.font-light {
+  font-family: "Lora", serif;
 }

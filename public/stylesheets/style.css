@@ -6,8 +6,18 @@ body {
 a {
   color: #00b7ff; }
 
-.navdiy {
-  font-family: "Lobster", cursive; }
+.navbar-custom {
+  font-family: "Lobster", cursive;
+  background-color: #282d4f;
+  color: #fff; }
+
+.nav-link-custom {
+  color: #fff; }
+
+.img-nav {
+  height: 20%;
+  width: 20%;
+  border-radius: 50%; }
 
 h2 {
   margin: 5%; }
@@ -23,23 +33,28 @@ button {
   margin: 2% 5%; }
 
 .red {
-  color: red; }
+  color: lightgrey; }
 
 .green {
   color: green; }
 
 .multi-col {
   text-align: center;
-  column-width: 20em; }
+  column-width: 20em;
+  margin: auto; }
 
 .tag {
   margin-bottom: 15px;
   break-inside: avoid;
-  background-color: #23103a;
+  background-color: #282d4f;
   color: white;
-  padding: 10px 0; }
+  padding: 10px 10px; }
 
-.shadow {
-  text-shadow: 2px 2px #ff6c00; }
+.shadow-title {
+  text-shadow: 2px 2px #ff6c00;
+  box-shadow: none; }
+
+.font-light {
+  font-family: "Lora", serif; }
 
 /*# sourceMappingURL=style.css.map */
