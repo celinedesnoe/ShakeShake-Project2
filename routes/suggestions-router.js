@@ -150,6 +150,18 @@ router.post("/process-bar", (req, res, next) => {
     .catch(err => next(err));
 });
 
+router.post("/process-bar-remove", (req, res, next) => {
+  const { ingredient } = req.body;
+
+  User.findByIdAndUpdate(
+    req.user._id,
+    { $pull: { ingredients: ingredient } },
+    { runValidators: true, new: true }
+  )
+    .then(() => res.redirect(`/mybar`))
+    .catch(err => next(err));
+});
+
 router.get("/suggestions", (req, res, next) => {
   User.findById(req.user._id).then(user => {
     userIngredientsArray = user.ingredients;
@@ -197,9 +209,11 @@ router.get("/suggestions", (req, res, next) => {
             recommendedIngredients.add(ingredient.toLowerCase());
           }
         });
-        console.log(recommendedIngredients);
+        // console.log(recommendedIngredients);
       });
-
+      res.locals.recommendedIngredientsArray = Array.from(
+        recommendedIngredients
+      );
       res.render("suggestion-views/suggestions.hbs");
     })
     .catch();

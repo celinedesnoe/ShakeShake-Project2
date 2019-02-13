@@ -1,24 +1,24 @@
-<h1>COUCOU</h1>
-
-{{ingredArray.length}}
-
-{{#each ingredArray}}
+<div class="flexbox">
+  <div class="containerIngredient">
+    {{#each ingredArray}}
 
 
-<form action="/process-bar" method="POST">
-  <button name="ingredient" value="{{this}}">{{this}}</button>
-</form>
+    <form action="/process-bar" method="POST">
+      <button name="ingredient" value="{{this}}">{{this}}</button>
+    </form>
 
-{{/each}}
-
-
-
-
-{{#each userIngredientsArray}}
+    {{/each}}
+  </div>
 
 
-<form action="/" method="">
-  <button name="ingredient" value="{{this}}">{{this}}</button>
-</form>
+  <div class="containerIngredient">
 
-{{/each}}
+    {{#each userIngredientsArray}}
+
+
+    <form action="/process-bar-remove" method="POST">
+      <button name="ingredient" value="{{this}}">{{this}}</button>
+    </form>
+
+    {{/each}}</div>
+</div>
