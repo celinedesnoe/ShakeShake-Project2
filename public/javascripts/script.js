@@ -5,3 +5,9 @@ document.addEventListener(
   },
   false
 );
+
+$(".new-field").hide();
+
+$(".add-field").click(function() {
+  $(".new-field").toggle();
+});
