@@ -43,10 +43,17 @@ button {
   column-width: 20em;
   margin: auto; }
 
-.tag {
+.tag-blue {
   margin-bottom: 15px;
   break-inside: avoid;
   background-color: #282d4f;
+  color: white;
+  padding: 10px 10px; }
+
+.tag-pink {
+  margin-bottom: 15px;
+  break-inside: avoid;
+  background-color: #a0204c;
   color: white;
   padding: 10px 10px; }
 

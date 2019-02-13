@@ -1,0 +1,73 @@
+<h2>Find your cocktails</h2>
+
+
+<a href="/cocktail-form">
+  <div>
+
+    Create your own cocktails!
+
+  </div>
+</a>
+
+<main class="multi-col">
+
+
+
+  {{#each drinkArray}}
+
+  <div class="tag-pink">
+
+    <h3 class="d-flex justify-content-center text-center">{{this.strDrink}}</h3>
+
+    <div class="d-flex justify-content-center">
+      <div class="div-marg">
+        <p class="text-center"><b>Ingredients: </b></p>
+
+        {{#each this.strIngredMeasure}}
+
+        {{#contains ../../search_ingredient (downcase this.Ingred) }}
+
+        <p class="green">
+          {{this.Ingred}}
+        </p>
+        {{else}}
+        <p class="red">
+          {{this.Ingred}}
+        </p>
+        {{/contains}}
+
+        {{/each}}
+
+      </div>
+
+      <div class="div-marg">
+        <p class="text-center"><b>Measure:</b></p>
+
+        {{#each this.strIngredMeasure}}
+        <p>
+          {{this.Measure}}
+        </p>
+        {{/each}}
+
+      </div>
+    </div>
+
+    <div>
+      <h3 class="d-flex justify-content-center text-center">Instructions</h3>
+
+      <p class="text-center">{{this.strInstructions}}</p>
+    </div>
+
+    {{!-- Link to the EDIT page (ID in the address to know which book to edit) --}}
+    <a href="/mycocktails/{{this.strDrink}}/edit">Edit</a>
+
+    {{!-- Link to the DELETE route (ID in address to know which book to delete) --}}
+    <a href="/mycocktails/{{this.strDrink}}/delete">Delete</a>
+
+
+
+  </div>
+
+  {{/each}}
+
+</main>

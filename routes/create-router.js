@@ -18,19 +18,106 @@ router.get("/cocktail-form", (req, res, next) => {
 });
 
 router.post("/process-cocktail", (req, res, next) => {
-  const { strDrink, strInstructions } = req.body;
+  const {
+    strDrink,
+    strIngredient1,
+    strMeasure1,
+    strIngredient2,
+    strMeasure2,
+    strIngredient3,
+    strMeasure3,
+    strIngredient4,
+    strMeasure4,
+    strIngredient5,
+    strMeasure5,
+    strIngredient6,
+    strMeasure6,
+    strIngredient7,
+    strMeasure7,
+    strIngredient8,
+    strMeasure8,
+    strIngredient9,
+    strMeasure9,
+    strInstructions
+  } = req.body;
   const userLog = req.user._id;
+
+  const IngredMeasure = [
+    { Ingred: strIngredient1, Measure: strMeasure1 },
+    { Ingred: strIngredient2, Measure: strMeasure2 },
+    { Ingred: strIngredient3, Measure: strMeasure3 },
+    { Ingred: strIngredient4, Measure: strMeasure4 },
+    { Ingred: strIngredient5, Measure: strMeasure5 },
+    { Ingred: strIngredient6, Measure: strMeasure6 },
+    { Ingred: strIngredient7, Measure: strMeasure7 },
+    { Ingred: strIngredient8, Measure: strMeasure8 },
+    { Ingred: strIngredient9, Measure: strMeasure9 }
+  ];
+
+  strIngredMeasure = IngredMeasure.filter(item => {
+    return item.Ingred !== "";
+  });
+
+  let IngredAll = [
+    strIngredient1,
+    strIngredient2,
+    strIngredient3,
+    strIngredient4,
+    strIngredient5,
+    strIngredient6,
+    strIngredient7,
+    strIngredient8,
+    strIngredient9
+  ];
+
+  strIngredAll = IngredAll.filter(item => {
+    return item !== "";
+  });
+
+  const userCreated = true;
+
+  console.log("The array" + strIngredAll);
+
+  //------------------------------
+  //  Update the user collection and add the cocktail
+  //---------------------------------
 
   User.findByIdAndUpdate(
     userLog,
     {
-      $push: { cocktailCreated: { strDrink, strInstructions } }
+      $push: {
+        cocktailCreated: {
+          strDrink,
+          strIngredient1,
+          strMeasure1,
+          strIngredient2,
+          strMeasure2,
+          strIngredient3,
+          strMeasure3,
+          strIngredient4,
+          strMeasure4,
+          strIngredient5,
+          strMeasure5,
+          strIngredient6,
+          strMeasure6,
+          strIngredient7,
+          strMeasure7,
+          strIngredient8,
+          strMeasure8,
+          strIngredient9,
+          strMeasure9,
+          strInstructions,
+          strIngredMeasure,
+          strIngredAll,
+          userCreated
+        }
+      }
     },
     { runValidators: true }
-  ).then(() => {});
-
-  Cocktail.create({ strDrink, strInstructions })
-    .then(() => {})
+  )
+    .then(() => {
+      res.redirect("/mycocktails");
+    })
     .catch(err => next(err));
 });
 

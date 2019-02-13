@@ -109,4 +109,7 @@ app.use("/", search);
 const create = require("./routes/create-router.js");
 app.use("/", create);
 
+const mycocktails = require("./routes/mycocktails-router.js");
+app.use("/", mycocktails);
+
 module.exports = app;
