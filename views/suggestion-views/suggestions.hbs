@@ -1,7 +1,29 @@
+{{#each spotlightIngredientsArray}}
+<h2>{{this.name}}</h2>
+<h4>You can make a <a href="/search/{{this.nextCocktail}}" method="POST">{{this.nextCocktail}} </a>if you get
+  this!</h4>
+<h4>This ingredient is used in <a href="/search-result-ingred/{{this.name}}" method:"POST"
+    value="{{this.name}}" />{{this.score}}
+  cocktails !</a>
+</h4>
+<form action="/process-bar-suggestions" method="POST">
+  <button name="ingredient" value="{{this.name}}">Add this to my bar.</button>
+</form>
+{{/each}}
+
+
+
+
+
+
+
 {{#each recommendedIngredientsArray}}
 <h2>{{this.name}}</h2>
 <h4>This ingredient is used in <a href="/search-result-ingred/{{this.name}}" method:"POST"
     value="{{this.name}}" />{{this.score}}
   cocktails !</a>
 </h4>
+<form action="/process-bar-suggestions" method="POST">
+  <button name="ingredient" value="{{this.name}}">Add this to my bar.</button>
+</form>
 {{/each}}
