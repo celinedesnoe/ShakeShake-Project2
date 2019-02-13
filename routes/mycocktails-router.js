@@ -24,4 +24,19 @@ router.get("/mycocktails", (req, res, next) => {
     .catch(err => next(err));
 });
 
+router.get("/mycocktails/:cocktailId/delete", (req, res, next) => {
+  const { cocktailId } = req.params;
+  const userLog = req.user._id;
+
+  console.log("nom du cocktail" + cocktailId);
+
+  User.findByIdAndUpdate(userLog, {
+    $pull: { cocktailCreated: { strDrink: cocktailId } }
+  })
+    .then(userDoc => {
+      res.redirect("/mycocktails");
+    })
+    .catch(err => next(err));
+});
+
 module.exports = router;

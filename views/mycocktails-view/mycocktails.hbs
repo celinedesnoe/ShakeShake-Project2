@@ -57,6 +57,15 @@
 
       <p class="text-center">{{this.strInstructions}}</p>
     </div>
+
+    {{!-- Link to the EDIT page (ID in the address to know which book to edit) --}}
+    <a href="/mycocktails/{{this.strDrink}}/edit">Edit</a>
+
+    {{!-- Link to the DELETE route (ID in address to know which book to delete) --}}
+    <a href="/mycocktails/{{this.strDrink}}/delete">Delete</a>
+
+
+
   </div>
 
   {{/each}}
