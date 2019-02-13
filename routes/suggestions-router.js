@@ -4,106 +4,20 @@ const Cocktail = require("../models/cocktail-model.js");
 const Ingredient = require("../models/ingredient-model.js");
 const User = require("../models/user-model.js");
 
-// router.get("/suggestions", (req, res, next) => {
-//   const setIngredients = new Set();
-//   // function uniq(ingredients) {
-//   //   return ingredients.sort().filter(function(item, pos, ary) {
-//   //     return !pos || item != ary[pos - 1];
-//   //   });
-//   // }
-//   Cocktail.distinct(`strIngredient9`).then(ingredResults => {
-//     ingredResults.forEach(ingredient => {
-//       setIngredients.add(ingredient.toLowerCase());
-//       // console.log("ingredient9");
-//     });
-//   });
-//   Cocktail.distinct(`strIngredient8`).then(ingredResults => {
-//     ingredResults.forEach(ingredient => {
-//       setIngredients.add(ingredient.toLowerCase());
-//       // console.log("ingredient8");
-//     });
-//   });
-//   Cocktail.distinct(`strIngredient7`).then(ingredResults => {
-//     ingredResults.forEach(ingredient => {
-//       setIngredients.add(ingredient.toLowerCase());
-//       // console.log("ingredient7");
-//     });
-//   });
-//   Cocktail.distinct(`strIngredient6`).then(ingredResults => {
-//     ingredResults.forEach(ingredient => {
-//       setIngredients.add(ingredient.toLowerCase());
-//       // console.log("ingredient6");
-//     });
-//   });
-//   Cocktail.distinct(`strIngredient5`).then(ingredResults => {
-//     ingredResults.forEach(ingredient => {
-//       setIngredients.add(ingredient.toLowerCase());
-//       // console.log("ingredient5");
-//     });
-//   });
-//   Cocktail.distinct(`strIngredient4`).then(ingredResults => {
-//     ingredResults.forEach(ingredient => {
-//       setIngredients.add(ingredient.toLowerCase());
-//       // console.log("ingredient4");
-//     });
-//   });
-//   Cocktail.distinct(`strIngredient3`).then(ingredResults => {
-//     ingredResults.forEach(ingredient => {
-//       setIngredients.add(ingredient.toLowerCase());
-//       // console.log("ingredient3");
-//     });
-//   });
-//   Cocktail.distinct(`strIngredient2`).then(ingredResults => {
-//     ingredResults.forEach(ingredient => {
-//       setIngredients.add(ingredient.toLowerCase());
-//       // console.log("ingredient2");
-//     });
-//   });
-//   Cocktail.distinct(`strIngredient1`)
-//     .then(ingredResults => {
-//       ingredResults.forEach(ingredient => {
-//         setIngredients.add(ingredient.toLowerCase());
-//         // console.log("ingredient1");
-//       });
-//       // var lowerCaseIngredients = ingredients.map(function(oneIngredient) {
-//       //   return oneIngredient.toLowerCase();
-//       // });
-//       // var uniqueIngredients = lowerCaseIngredients.filter(function(item, pos) {
-//       //   return lowerCaseIngredients.indexOf(item) == pos;
-//       // });
-//       let ingredients = Array.from(setIngredients);
-//       console.log(ingredients);
-//       res.locals.ingredArray = ingredients;
-//       res.render("suggestion-views/bar-input.hbs", ingredResults);
-//     })
-//     .catch(err => next(err));
+let unique;
+function getUnique(arr, comp) {
+  unique = arr
+    .map(e => e[comp])
 
-//   // for (let i = 1; i <= 9; i++) {
-//   //   if (cocktail["ingredient" + i]) {
-//   //     ingredients.push(ingredient);
-//   //   }
-//   // }
-// });
+    // store the keys of the unique objects
+    .map((e, i, final) => final.indexOf(e) === i && i)
 
-// router.get("/suggestions", (req, res, next) => {
-//   const setIngredients = new Set();
+    // eliminate the dead keys & store unique objects
+    .filter(e => arr[e])
+    .map(e => arr[e]);
 
-//   Cocktail.find().then( for (let i = 1; i <= 9; i++) {
-//     if (cocktail["ingredient" + i]) {
-//       setIngredients.add(ingredient);
-//       let ingredients = Array.from(setIngredients);
-//       console.log(ingredients);
-//       res.locals.ingredArray = ingredients;
-//       res.render("suggestion-views/bar-input.hbs", ingredResults);
-//     }).catch(err => next(err));
-
-// });
-
-// for (let i = 1; i <= 9; i++) {
-//   if (cocktail["ingredient" + i]) {
-//     setIngredients.add(ingredient);
-//   }
-// }
+  return unique;
+}
 
 router.get("/mybar", (req, res, rext) => {
   const host = req.user._id;
@@ -190,7 +104,7 @@ router.post("/process-bar-remove", (req, res, next) => {
 });
 
 router.get("/suggestions", (req, res, next) => {
-  const ingredientsUntilOneCocktail = new Set();
+  ingredientsUntilOneCocktail = [];
 
   User.findById(req.user._id).then(user => {
     userIngredientsArray = user.ingredients;
@@ -221,24 +135,31 @@ router.get("/suggestions", (req, res, next) => {
               cocktail.ingredientsInCommon++;
               cocktail.ingredientsDifference--;
               if (cocktail.ingredientsDifference === 1) {
-                console.log(ingredient);
-                cocktail.strIngredAll.forEach(() => {});
+                cocktail.strIngredAll.forEach(uniqueIngredient => {
+                  if (
+                    userIngredientsArray.indexOf(
+                      uniqueIngredient.toLowerCase
+                    ) === -1
+                  ) {
+                    console.log("coucou", uniqueIngredient);
+                    ingredientsUntilOneCocktail.push(
+                      (ingredient = {
+                        name: uniqueIngredient.toLowerCase(),
+                        score: 0,
+                        nextCocktail: cocktail.strDrink
+                      })
+                    );
+                  }
+                });
                 /////////
-                ingredientsUntilOneCocktail.add(
-                  (ingredient = {
-                    name: ingredient.toLowerCase(),
-                    score: 0,
-                    nextCocktail: cocktail.strDrink
-                  })
-                );
-                console.log(ingredientsUntilOneCocktail);
               }
+              console.log(ingredientsUntilOneCocktail);
+
               // console.log(cocktail.ingredientsDifference);
               // console.log("cocktail mis a jour", cocktail);
             }
           }
         }
-        console.log(ingredientsUntilOneCocktail);
       });
 
       let possibleCocktailsArray = Array.from(possibleCocktails);
@@ -278,20 +199,7 @@ router.get("/suggestions", (req, res, next) => {
       recommendedIngredientsUnique = Array.from(recommendedIngredients);
 
       // console.log(recommendedIngredients);
-      let unique;
-      function getUnique(arr, comp) {
-        unique = arr
-          .map(e => e[comp])
 
-          // store the keys of the unique objects
-          .map((e, i, final) => final.indexOf(e) === i && i)
-
-          // eliminate the dead keys & store unique objects
-          .filter(e => arr[e])
-          .map(e => arr[e]);
-
-        return unique;
-      }
       getUnique(recommendedIngredientsUnique, "name");
       res.locals.spotlightIngredientsArray = Array.from(
         ingredientsUntilOneCocktail
