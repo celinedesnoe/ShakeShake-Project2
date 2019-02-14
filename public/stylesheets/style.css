@@ -48,7 +48,8 @@ button {
   break-inside: avoid;
   background-color: #282d4f;
   color: white;
-  padding: 10px 10px; }
+  padding: 10px 10px;
+  border-radius: 2px; }
 
 .tag-pink {
   margin-bottom: 15px;

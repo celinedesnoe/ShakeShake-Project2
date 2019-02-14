@@ -4,21 +4,6 @@ const Cocktail = require("../models/cocktail-model.js");
 const Ingredient = require("../models/ingredient-model.js");
 const User = require("../models/user-model.js");
 
-let unique;
-function getUnique(arr, comp) {
-  unique = arr
-    .map(e => e[comp])
-
-    // store the keys of the unique objects
-    .map((e, i, final) => final.indexOf(e) === i && i)
-
-    // eliminate the dead keys & store unique objects
-    .filter(e => arr[e])
-    .map(e => arr[e]);
-
-  return unique;
-}
-
 router.get("/mybar", (req, res, rext) => {
   const host = req.user._id;
   User.findById(req.user._id)
@@ -108,7 +93,7 @@ router.get("/suggestions", (req, res, next) => {
 
   User.findById(req.user._id)
     .then(user => {
-      console.log("first", user.ingredients);
+      // console.log("first", user.ingredients);
       userIngredientsArray = user.ingredients;
     })
     .then(() => {
@@ -137,7 +122,7 @@ router.get("/suggestions", (req, res, next) => {
             ingr => !userIngredientsArray.includes(ingr.toLowerCase())
           ).length === 1
       );
-      console.log(possibleWithOneOnlyCocktails);
+      // console.log(possibleWithOneOnlyCocktails);
 
       const ingredientsNeeded = possibleWithOneOnlyCocktails.reduce(
         (acc, curr) => {
@@ -162,7 +147,7 @@ router.get("/suggestions", (req, res, next) => {
         []
       );
 
-      console.log(ingredientsNeeded);
+      // console.log(ingredientsNeeded);
 
       //regarder a travers tous les cocktails possibles (1 ingredient au moins en commun)
       // possibleCocktails.forEach(cocktail => {
@@ -240,11 +225,26 @@ router.get("/suggestions", (req, res, next) => {
           }
         });
       });
-      recommendedIngredientsUnique = Array.from(recommendedIngredients);
+      let unique;
+      function getUnique(arr, comp) {
+        unique = arr
+          .map(e => e[comp])
+
+          // store the keys of the unique objects
+          .map((e, i, final) => final.indexOf(e) === i && i)
+
+          // eliminate the dead keys & store unique objects
+          .filter(e => arr[e])
+          .map(e => arr[e]);
+
+        return unique;
+      }
+
+      recommendedIngredientsArray = Array.from(recommendedIngredients);
 
       console.log(recommendedIngredients);
 
-      getUnique(recommendedIngredientsUnique, "name");
+      getUnique(recommendedIngredientsArray, "name");
       res.locals.spotlightIngredientsArray = Array.from(ingredientsNeeded);
       res.locals.recommendedIngredientsArray = unique;
       res.render("suggestion-views/suggestions.hbs");
