@@ -1,6 +1,6 @@
 <h2>Edit your cocktail </h2>
 
-<form action="/mycocktails/{{cocktailItem.strDrink}}/process-edit" method="POST">
+<form action="/mycocktails/{{cocktailItem.strDrink}}/process-edit" method="POST" enctype="multipart/form-data">
 
   <div>
     <label>
@@ -9,6 +9,12 @@
     </label>
   </div>
 
+  <div>
+    <label>
+      Picture:
+      <input type="file" name="strDrinkThumb" value="{{cocktailItem.strDrinkThumb}}">
+    </label>
+  </div>
 
   <div>
     <label>
