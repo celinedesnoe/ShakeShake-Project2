@@ -1,7 +1,8 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  font-family: "Lobster", cursive; }
+  font-family: "Lobster", cursive;
+  background-image: url("../images/shakeshakebackground.jpg"); }
 
 a {
   color: #00b7ff; }

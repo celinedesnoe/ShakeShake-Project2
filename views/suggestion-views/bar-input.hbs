@@ -1,29 +1,3 @@
-<div class="d-flex justify-content-center">
-  <form action="/process-bar" method="POST" id="ingred-list">
-    <label>Search an ingredient :</label>
-
-    <input list="cocktails" type="text" name="search_query" required="true">
-
-    <datalist id="cocktails">
-
-      {{#each ingredArray}}
-      <option value="{{this}}"></option>
-      {{/each}}
-    </datalist>
-
-
-
-    <datalist id="cocktails">
-      {{#each ingredArray}}
-      <option value="{{this}}"></option>
-      {{/each}}
-    </datalist>
-
-
-    <button>Add to my bar !</button>
-
-</div>
-
 {{!-- <div class="containerIngredient">
     {{#each ingredArray}}
 
@@ -46,3 +20,96 @@
 
   {{/each}}
 </div>
+<main class="multi-col">
+  <div class="d-flex justify-content-center tag-blue">
+    <form action="/process-bar" method="POST" id="ingred-list">
+      <label>Search an ingredient :</label><br>
+
+      <input list="cocktails" type="text" name="search_query" required="true">
+
+      <datalist id="cocktails">
+
+        {{#each ingredArray}}
+        <option value="{{this}}"></option>
+        {{/each}}
+      </datalist>
+
+
+
+      <datalist id="cocktails">
+        {{#each ingredArray}}
+        <option value="{{this}}"></option>
+        {{/each}}
+      </datalist>
+
+
+      <button>Add to my bar !</button>
+      <h4>My bar :</h4>
+      <div class="containerIngredient">
+
+        {{#each userIngredientsArray}}
+
+        <form action="/process-bar-remove" method="POST" id="user_ingredient">
+          <button name="ingredient" value="{{this}}">{{this}}</button>
+        </form>
+
+        {{/each}}
+      </div>
+  </div>
+
+
+
+  {{#each readyCocktails}}
+
+  {{!-- <div class="col-lg-4 col-md-6 mycard d-flex flex-column justify-content-between "> --}}
+  <div class="tag-blue">
+
+    <img src=" {{this.strDrinkThumb}}" class="img-nav">
+
+    <h3 class="d-flex justify-content-center text-center shadow-title">{{this.strDrink}}</h3>
+
+
+
+
+    <div class="d-flex justify-content-center font-light">
+      <div class="div-marg">
+        <p class="text-center "><b>Ingredients: </b></p>
+
+        {{#each this.strIngredMeasure}}
+
+        <p>
+          {{this.Ingred}}
+        </p>
+
+        {{/each}}
+
+      </div>
+
+      <div class=" div-marg">
+        <p class="text-center"><b>Measure:</b></p>
+
+        {{#each this.strIngredMeasure}}
+        <p>
+          {{this.Measure}}
+        </p>
+        {{/each}}
+
+      </div>
+    </div>
+
+    <div>
+      <h3 class="d-flex justify-content-center text-center">Instructions</h3>
+
+      <p class="text-center font-light">{{this.strInstructions}}</p>
+    </div>
+
+    <a href="/mycocktails/{{this.strDrink}}/add-favorites">❤️</a>
+
+    {{!-- </div> --}}
+  </div>
+
+
+
+
+  {{/each}}
+</main>
