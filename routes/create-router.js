@@ -23,7 +23,10 @@ router.post(
   fileUploader.single("strDrinkThumb"),
   (req, res, next) => {
     const userLog = req.user._id;
-    const strDrinkThumb = req.file.secure_url;
+
+    if (strDrinkThumb) {
+      var strDrinkThumb = req.file.secure_url;
+    }
 
     const {
       strDrink,
