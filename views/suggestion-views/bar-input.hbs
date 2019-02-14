@@ -1,5 +1,30 @@
-<div class="flexbox">
-  <div class="containerIngredient">
+<div class="d-flex justify-content-center">
+  <form action="/process-bar" method="POST" id="ingred-list">
+    <label>Search an ingredient :</label>
+
+    <input list="cocktails" type="text" name="search_query" required="true">
+
+    <datalist id="cocktails">
+
+      {{#each ingredArray}}
+      <option value="{{this}}"></option>
+      {{/each}}
+    </datalist>
+
+
+
+    <datalist id="cocktails">
+      {{#each ingredArray}}
+      <option value="{{this}}"></option>
+      {{/each}}
+    </datalist>
+
+
+    <button>Add to my bar !</button>
+
+</div>
+
+{{!-- <div class="containerIngredient">
     {{#each ingredArray}}
 
 
@@ -8,17 +33,16 @@
     </form>
 
     {{/each}}
-  </div>
+  </div> --}}
 
 
-  <div class="containerIngredient">
+<div class="containerIngredient">
 
-    {{#each userIngredientsArray}}
+  {{#each userIngredientsArray}}
 
+  <form action="/process-bar-remove" method="POST" id="user_ingredient">
+    <button name="ingredient" value="{{this}}">{{this}}</button>
+  </form>
 
-    <form action="/process-bar-remove" method="POST">
-      <button name="ingredient" value="{{this}}">{{this}}</button>
-    </form>
-
-    {{/each}}</div>
+  {{/each}}
 </div>
