@@ -173,24 +173,33 @@ router.post(
 // To add a favorite cocktail to the user
 // #####################################################
 
-router.get("/mycocktails/:cocktailId/add-favorites", (req, res, next) => {
-  const { cocktailId } = req.params;
-  const userLog = req.user._id;
-  console.log("The cocktail is", cocktailId);
+// router.get("/mycocktails/:cocktailId/add-favorites", (req, res, next) => {
+//   const { cocktailId } = req.params;
+//   const userLog = req.user._id;
+//   // var cocktailLove;
 
-  Cocktail.findOne({ strDrink: { $eq: cocktailId } })
-    .then(cocktailDoc => {
-      console.log(cocktailDoc);
+//   // console.log("Cocktail Favorites", userLog);
+//   // console.log("The cocktail is", cocktailId);
 
-      User.findByIdAndUpdate(userLog, {
-        $push: {
-          cocktailFavorites: cocktailId
-        }
-      });
+//   Cocktail.findOne({ strDrink: { $eq: cocktailId } }).then(cocktailDoc => {
+//     // console.log("e cocktail que j'ai trouvé", cocktailDoc);
+//     // console.log(cocktailDoc);
+//     // cocktailLove = cocktailDoc;
+//     res.locals.cocktailLove = cocktailDoc;
+//   });
 
-      res.redirect("/mycocktails");
-    })
-    .catch(err => next(err));
-});
+//   User.findByIdAndUpdate(
+//     userLog,
+//     {
+//       $push: { cocktailFavorites: cocktailLove }
+//     },
+//     { runValidators: true }
+//   )
+//     .then(userDoc => {
+//       console.log("Le cocktail que j'envoie en favori", cocktailLove);
+//       res.redirect("/mycocktails");
+//     })
+//     .catch(err => next(err));
+// });
 
 module.exports = router;

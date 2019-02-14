@@ -1,5 +1,4 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   font-family: "Lobster", cursive; }
 
@@ -40,8 +39,9 @@ button {
 
 .multi-col {
   text-align: center;
-  column-width: 20em;
-  margin: auto; }
+  column-width: 25em;
+  margin: auto;
+  padding: 20px; }
 
 .tag-blue {
   margin-bottom: 15px;
@@ -63,7 +63,8 @@ button {
   box-shadow: none; }
 
 .font-light {
-  font-family: "Lora", serif; }
+  font-family: "Bad Script", cursive;
+  font-size: 1.5em; }
 
 .flexbox {
   display: flex; }
