@@ -17,6 +17,10 @@ const userSchema = new Schema(
     cocktailCreated: {
       type: Array,
       items: { type: Schema.Types.ObjectId, ref: "Cocktail" }
+    },
+    cocktailFavorites: {
+      type: Array,
+      items: { type: Schema.Types.ObjectId, ref: "Cocktail" }
     }
   },
   {
