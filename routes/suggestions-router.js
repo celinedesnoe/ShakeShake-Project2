@@ -50,8 +50,24 @@ router.get("/mybar", (req, res, rext) => {
     .catch(err => next(err));
 });
 
+// router.post("/process-bar", (req, res, next) => {
+//   const { ingredient } = req.body;
+
+//   User.findByIdAndUpdate(
+//     req.user._id,
+
+//     { $push: { ingredients: ingredient } },
+//     { runValidators: true, new: true }
+//   )
+//     .then(() => res.redirect(`/mybar`))
+//     .catch(err => next(err));
+// });
+
 router.post("/process-bar", (req, res, next) => {
-  const { ingredient } = req.body;
+  console.log("je vais chercher l'ingredient");
+  const ingredient = req.body.search_query;
+  console.log("l'ingredient est ", ingredient);
+  console.log("je vais chercher l'utilisateur");
 
   User.findByIdAndUpdate(
     req.user._id,
@@ -243,7 +259,7 @@ router.get("/suggestions", (req, res, next) => {
       recommendedIngredientsArray = Array.from(recommendedIngredients);
 
       console.log(recommendedIngredients);
-
+      recommendedIngredientsArray.sort((a, b) => b.score - a.score);
       getUnique(recommendedIngredientsArray, "name");
       res.locals.spotlightIngredientsArray = Array.from(ingredientsNeeded);
       res.locals.recommendedIngredientsArray = unique;
