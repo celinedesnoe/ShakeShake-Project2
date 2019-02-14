@@ -4,55 +4,60 @@ const User = require("../models/user-model.js");
 const router = express.Router();
 
 router.get("/search", (req, res, next) => {
-  User.findById(req.user._id)
-    .then(user => {
-      userPersonnalIngredients = user.cocktailCreated.reduce(function(
-        prev,
-        curr
-      ) {
-        return [...prev, ...curr.strIngredAll];
-      },
-      []);
+  if (req.user) {
+    User.findById(req.user._id)
+      .then(user => {
+        userPersonnalIngredients = user.cocktailCreated.reduce(function(
+          prev,
+          curr
+        ) {
+          return [...prev, ...curr.strIngredAll];
+        },
+        []);
 
-      // console.log(userPersonnalIngredients);
-    })
-    .catch(err => next(err));
-  Cocktail.find()
-    .then(result => {
-      const setCocktails = result;
-      const setIngredients = new Set();
-      result.forEach(cocktail => {
-        for (let i = 1; i <= 9; i++) {
-          let ingredient = cocktail["strIngredient" + i];
-          if (ingredient) {
-            setIngredients.add(ingredient.toLowerCase());
+        // console.log(userPersonnalIngredients);
+      })
+      .catch(err => next(err));
+
+    Cocktail.find()
+      .then(result => {
+        const setCocktails = result;
+        const setIngredients = new Set();
+        result.forEach(cocktail => {
+          for (let i = 1; i <= 9; i++) {
+            let ingredient = cocktail["strIngredient" + i];
+            if (ingredient) {
+              setIngredients.add(ingredient.toLowerCase());
+            }
           }
+        });
+        let ingredients = Array.from(setIngredients);
+        userPersonnalIngredients.forEach(ingredient => {
+          ingredients.push(ingredient);
+        });
+        let sortedIngredients = ingredients.sort();
+        res.locals.ingredArray = sortedIngredients;
+
+        function shuffle(a) {
+          var j, x, i;
+          for (i = a.length - 1; i > 0; i--) {
+            j = Math.floor(Math.random() * (i + 1));
+            x = a[i];
+            a[i] = a[j];
+            a[j] = x;
+          }
+          return a;
         }
-      });
-      let ingredients = Array.from(setIngredients);
-      userPersonnalIngredients.forEach(ingredient => {
-        ingredients.push(ingredient);
-      });
-      let sortedIngredients = ingredients.sort();
-      res.locals.ingredArray = sortedIngredients;
 
-      function shuffle(a) {
-        var j, x, i;
-        for (i = a.length - 1; i > 0; i--) {
-          j = Math.floor(Math.random() * (i + 1));
-          x = a[i];
-          a[i] = a[j];
-          a[j] = x;
-        }
-        return a;
-      }
+        let setCocktailsRandom = shuffle(setCocktails).slice(0, 20);
+        res.locals.cocktailArray = setCocktailsRandom;
+        res.render("search-views/search.hbs");
+      })
 
-      let setCocktailsRandom = shuffle(setCocktails).slice(0, 20);
-      res.locals.cocktailArray = setCocktailsRandom;
-      res.render("search-views/search.hbs");
-    })
-
-    .catch(err => next(err));
+      .catch(err => next(err));
+  } else {
+    res.redirect("/");
+  }
 });
 
 //###############################################################

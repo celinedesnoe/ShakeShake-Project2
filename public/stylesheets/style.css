@@ -90,4 +90,12 @@ hr {
   margin-block-end: 0;
   font-size: 0.9em; }
 
+input {
+  font-family: "Bad Script", cursive;
+  font-size: 0.8em;
+  width: 60%;
+  opacity: 0.8;
+  border-radius: 1em;
+  text-align: center; }
+
 /*# sourceMappingURL=style.css.map */

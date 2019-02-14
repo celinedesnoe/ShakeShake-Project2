@@ -1,5 +1,51 @@
 <h2 class="d-flex justify-content-center text-center title">The cocktail you are looking for:</h2>
 
+<div class="d-flex flex-row justify-content-center">
+
+  <div class="d-flex align-content-center flex-column col-5">
+    <form action="search-result-drink" method="GET">
+      <div class="d-flex justify-content-center"><label>by Name</label></div>
+      <div class="d-flex justify-content-center"><input type="text" name="search_query"></div>
+      <div class="d-flex justify-content-center"><button>Find cocktails!</button></div>
+    </form>
+  </div>
+
+  <div class="col-2">
+    <p>OR</p>
+  </div>
+
+  <div class="align-content-center flex-column col-5">
+    <form action="/search-result-ingred" method="GET" id="ingred-list">
+      <div class="d-flex justify-content-center"><label>by Ingredients</label></div>
+
+      <div class="d-flex justify-content-center"><input list="cocktails" type="text" name="search_query"
+          placeholder="Ingredient 1">
+
+        <datalist id="cocktails">
+
+          {{#each ingredArray}}
+          <option value="{{this}}"></option>
+          {{/each}}
+        </datalist></div>
+
+
+      <div class="d-flex justify-content-center"><input list="cocktails" type="text" name="search_query"
+          placeholder="Ingredient 2">
+
+        <datalist id="cocktails">
+          {{#each ingredArray}}
+          <option value="{{this}}"></option>
+          {{/each}}
+        </datalist></div>
+
+
+      <div class="d-flex justify-content-center"><button>Find cocktails!</button></div>
+
+    </form>
+
+  </div>
+</div>
+
 
 <main class="multi-col">
 
