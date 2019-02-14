@@ -4,6 +4,19 @@ const User = require("../models/user-model.js");
 const router = express.Router();
 
 router.get("/search", (req, res, next) => {
+  User.findById(req.user._id)
+    .then(user => {
+      userPersonnalIngredients = user.cocktailCreated.reduce(function(
+        prev,
+        curr
+      ) {
+        return [...prev, ...curr.strIngredAll];
+      },
+      []);
+
+      // console.log(userPersonnalIngredients);
+    })
+    .catch(err => next(err));
   Cocktail.find()
     .then(result => {
       const setCocktails = result;
@@ -17,6 +30,9 @@ router.get("/search", (req, res, next) => {
         }
       });
       let ingredients = Array.from(setIngredients);
+      userPersonnalIngredients.forEach(ingredient => {
+        ingredients.push(ingredient);
+      });
       let sortedIngredients = ingredients.sort();
       res.locals.ingredArray = sortedIngredients;
 

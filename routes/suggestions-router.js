@@ -24,7 +24,7 @@ router.get("/mybar", (req, res, rext) => {
   // console.log(host);
   Cocktail.find()
     .then(result => {
-      console.log(userPersonnalIngredients);
+      // console.log(userPersonnalIngredients);
 
       const setIngredients = new Set();
       result.forEach(cocktail => {
@@ -39,6 +39,13 @@ router.get("/mybar", (req, res, rext) => {
           }
         }
       });
+      const readyCocktails = result.filter(
+        cocktail =>
+          cocktail.strIngredAll.filter(
+            ingr => !userIngredientsArray.includes(ingr.toLowerCase())
+          ).length === 0
+      );
+      // console.log(readyCocktails);
       // console.log(setIngredients);
       let ingredients = Array.from(setIngredients);
       userIngredientsArray.forEach(ingredient => {
@@ -56,6 +63,7 @@ router.get("/mybar", (req, res, rext) => {
       ingredients.sort();
 
       //       console.log(ingredients);
+      res.locals.readyCocktails = readyCocktails;
       res.locals.ingredArray = ingredients;
       res.render("suggestion-views/bar-input.hbs");
     })
