@@ -1,9 +1,14 @@
 <h2>Edit your cocktail </h2>
 <form action="/mycocktails/{{}}/process-edit" method="POST">
 
-  <label>
+  <div>
+    <label>
+      Drink Name:
+      <input type="text" name="strDrink" value="{{}}">
+    </label>
+  </div>
 
-  </label>
+
 
   <button>Save</button>
 </form>
