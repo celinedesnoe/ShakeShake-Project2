@@ -174,12 +174,20 @@ router.post(
 router.get("/mycocktails/:cocktailId/add-favorites", (req, res, next) => {
   const { cocktailId } = req.params;
   const userLog = req.user._id;
-  User.findByIdAndUpdate(userLog, {
-    $push: {
-      cocktailFavorites: "OK"
-    }
-  })
-    .then(res.redirect("/mycocktails"))
+  console.log("The cocktail is", cocktailId);
+
+  Cocktail.findOne({ strDrink: { $eq: cocktailId } })
+    .then(cocktailDoc => {
+      console.log(cocktailDoc);
+
+      User.findByIdAndUpdate(userLog, {
+        $push: {
+          cocktailFavorites: cocktailId
+        }
+      });
+
+      res.redirect("/mycocktails");
+    })
     .catch(err => next(err));
 });
 
