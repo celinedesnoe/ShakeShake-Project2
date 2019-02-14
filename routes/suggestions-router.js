@@ -9,15 +9,23 @@ router.get("/mybar", (req, res, rext) => {
   User.findById(req.user._id)
     .then(user => {
       userIngredientsArray = user.ingredients;
-      userCocktails = user.cocktailCreated;
+      userPersonnalIngredients = user.cocktailCreated.reduce(function(
+        prev,
+        curr
+      ) {
+        return [...prev, ...curr.strIngredAll];
+      },
+      []);
       userIngredientsArray.sort();
       res.locals.userIngredientsArray = user.ingredients;
-      console.log(userCocktails);
+      // console.log(userPersonnalIngredients);
     })
     .catch(err => next(err));
   // console.log(host);
   Cocktail.find()
     .then(result => {
+      console.log(userPersonnalIngredients);
+
       const setIngredients = new Set();
       result.forEach(cocktail => {
         for (let i = 1; i <= 9; i++) {
@@ -41,6 +49,9 @@ router.get("/mybar", (req, res, rext) => {
             // console.log(ingredient);
           }
         }
+      });
+      userPersonnalIngredients.forEach(ingredient => {
+        ingredients.push(ingredient);
       });
       ingredients.sort();
 
