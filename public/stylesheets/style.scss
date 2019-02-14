@@ -9,6 +9,22 @@ body {
   font-family: "Lobster", cursive;
   // background-color: #ff6c00;
   background-image: url("../images/shakeshakebackground.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.containerflex {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+}
+.flexcolumn {
+  flex-direction: column;
+}
+
+.login-home h1 {
+  font-size: 5em;
 }
 
 a {
