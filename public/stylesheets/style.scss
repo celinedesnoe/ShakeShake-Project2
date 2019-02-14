@@ -16,19 +16,65 @@ body {
 
 .containerflex {
   width: 100%;
-  height: 100vh;
+  height: 80vh;
   display: flex;
 }
 .flexcolumn {
+  display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.logobox {
+  width: 30%;
+}
+.homelogin {
+  margin-top: 3%;
+  text-align: center;
+  align-content: center;
+  width: 100%;
+}
+.homelogin label {
+  width: 40%;
+}
+.homelogin input {
+  width: 100%;
+  font-size: 1.8em;
+}
+.homelogin h2 {
+  margin: 1%;
+}
+.homelogin button {
+  width: 40%;
+  font-size: 1.2em;
 }
 
 .login-home h1 {
   font-size: 5em;
 }
+homelogin {
+  width: "";
+}
 
 a {
   color: #00b7ff;
+}
+.homeicon {
+  width: 50%;
+}
+.homecard {
+  padding: 3px;
+  border: 2px solid #ff6c00;
+  align-items: center;
+  border-radius: 2px;
+  background-color: #282d4f;
+}
+
+.homecard h2 {
+  text-align: center;
+  color: white;
+  text-shadow: 2px 2px #ff6c00;
 }
 
 .navbar-custom {
@@ -47,8 +93,16 @@ a {
   border-radius: 50%;
 }
 
+.img-drink {
+  height: 40%;
+  width: 40%;
+  border-radius: 50%;
+  padding: 5%;
+  // border: 1px solid #ff6c00;
+}
+
 h2 {
-  margin: 5%;
+  margin: 3%;
 }
 
 button {
@@ -63,17 +117,18 @@ button {
   margin: 2% 5%;
 }
 
-.red {
-  color: lightgrey;
+.orange {
+  color: #ff6c00;
 }
 
-.green {
-  color: green;
+.title {
+  color: white;
+  text-shadow: 2px 2px #282d4f;
 }
 
 .multi-col {
   text-align: center;
-  column-width: 25em;
+  column-width: 20em;
   margin: auto;
   padding: 20px;
 }
@@ -85,6 +140,7 @@ button {
   color: white;
   padding: 10px 10px;
   border-radius: 2px;
+  border: 1px solid #ff6c00;
 }
 
 .tag-pink {
@@ -93,18 +149,42 @@ button {
   background-color: #a0204c;
   color: white;
   padding: 10px 10px;
+  border: 1px solid #ff6c00;
 }
 
 .shadow-title {
-  text-shadow: 2px 2px #ff6c00;
+  text-shadow: 2px 2px #faf7f6;
   box-shadow: none;
 }
 
 .font-light {
   font-family: "Bad Script", cursive;
-  font-size: 1.5em;
+  font-size: 1em;
 }
 
 .flexbox {
   display: flex;
+}
+
+label {
+  color: white;
+}
+
+hr {
+  border-top: 1px solid #ff6c00;
+  width: 20%;
+}
+
+.ingred-measure {
+  margin-block-end: 0;
+  font-size: 0.9em;
+}
+
+input {
+  font-family: "Bad Script", cursive;
+  font-size: 0.8em;
+  width: 60%;
+  opacity: 0.8;
+  border-radius: 1em;
+  text-align: center;
 }

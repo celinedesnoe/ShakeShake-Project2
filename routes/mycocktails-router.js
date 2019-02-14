@@ -6,23 +6,27 @@ const fileUploader = require("../config/file-upload.js");
 const router = express.Router();
 
 router.get("/mycocktails", (req, res, next) => {
-  var drinks = [];
+  if (req.user) {
+    var drinks = [];
 
-  //-----------------------------------------------------------------
-  //Find the cocktails that have been created
-  //BY USER LOGGED IN to be in the top of the array
-  //-----------------------------------------------------------------
-  User.findById(req.user._id)
-    .then(userDoc => {
-      const userCocktails = userDoc.cocktailCreated;
-      console.log(userDoc);
-      userCocktails.forEach(drink => {
-        drinks.push(drink);
-      });
-      res.locals.drinkArray = drinks;
-      res.render("mycocktails-view/mycocktails.hbs");
-    })
-    .catch(err => next(err));
+    //-----------------------------------------------------------------
+    //Find the cocktails that have been created
+    //BY USER LOGGED IN to be in the top of the array
+    //-----------------------------------------------------------------
+    User.findById(req.user._id)
+      .then(userDoc => {
+        const userCocktails = userDoc.cocktailCreated;
+        console.log(userDoc);
+        userCocktails.forEach(drink => {
+          drinks.push(drink);
+        });
+        res.locals.drinkArray = drinks;
+        res.render("mycocktails-view/mycocktails.hbs");
+      })
+      .catch(err => next(err));
+  } else {
+    res.redirect("/");
+  }
 });
 
 // #####################################################

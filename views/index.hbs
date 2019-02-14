@@ -1,4 +1,62 @@
-<div class="containerflex column">
-  <div width="40%"><img src="../images/shakeshakelogoHD.png" alt="" srcset=""></div>
+{{#if currentUser}}
+<div class="containerflex flexcolumn">
+  <div class="logobox">
+    <img width="100%" heigth="100%" object-fit="contain" src="../images/shakeshakelogoHD.png" alt=""></div>
 
+  {{!-- <div>
+    <div class="homecard flexbox">
+      <div><img class="homeicon" src="../images/icon1.png" alt="" srcset=""></div>
+      <h2>Browse the Drinks</h2>
+    </div>
+
+  </div> --}}
+  <div class="container">
+    <div class="row ">
+      <div class="col ">
+        <a href="/search">
+          <div class="homecard flexbox">
+            <div class="homeicon"><img width="100%" heigth="auto" src="../images/icon1.png" alt="" srcset=""></div>
+            <h2>Browse the Drinks</h2>
+          </div>
+      </div></a>
+      <div class="col">
+        <a href="/mybar">
+          <div class="homecard flexbox">
+            <div class="homeicon"><img width="100%" heigth="auto" src="../images/icon2.png" alt="" srcset=""></div>
+            <h2>Manage my Bar</h2>
+          </div>
+      </div></a>
+      <div class="col">
+        <a href="/suggestions">
+          <div class="homecard flexbox">
+            <div class="homeicon"><img width="100%" heigth="auto" src="../images/icon3.png" alt="" srcset=""></div>
+            <h2>Our Suggestions</h2>
+          </div>
+      </div></a>
+    </div>
+  </div>
 </div>
+
+{{else}}
+<div class="containerflex flexcolumn">
+  <div class="logobox">
+    <img width="100%" heigth="100%" object-fit="contain" src="../images/shakeshakelogoHD.png" alt=""></div>
+
+  <div class="homelogin">
+
+
+    <form width="100%" class="flexcolumn" action="/process-login" method="POST">
+      <label>
+        <input type="email" name="email" placeholder="Your Email " required />
+      </label>
+
+      <label>
+        <input type="password" name="originalPassword" placeholder="Your Password " required />
+      </label>
+
+      <button>Please Log In</button>
+
+    </form>
+  </div>
+</div>
+{{/if}}

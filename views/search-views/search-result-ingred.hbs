@@ -1,5 +1,54 @@
-{{!-- <h2 class="d-flex justify-content-center text-center">The cocktails you can do with: --}}
+<h2 class="d-flex justify-content-center text-center title">The cocktails you can do with:</h2>
 
+<div class="d-flex flex-row justify-content-center">
+
+  <div class="d-flex align-content-center flex-column col-5">
+    <form action="search-result-drink" method="GET">
+      <div class="d-flex justify-content-center"><label>by Name</label></div>
+      <div class="d-flex justify-content-center"><input type="text" name="search_query"></div>
+      <div class="d-flex justify-content-center"><button>Find cocktails!</button></div>
+    </form>
+  </div>
+
+  <div class="col-2">
+    <p>OR</p>
+  </div>
+
+  <div class="align-content-center flex-column col-5">
+    <form action="/search-result-ingred" method="GET" id="ingred-list">
+      <div class="d-flex justify-content-center"><label>by Ingredients</label></div>
+
+      <div class="d-flex justify-content-center"><input list="cocktails" type="text" name="search_query"
+          placeholder="Ingredient 1">
+
+        <datalist id="cocktails">
+
+          {{#each ingredArray}}
+          <option value="{{this}}"></option>
+          {{/each}}
+        </datalist></div>
+
+
+      <div class="d-flex justify-content-center"><input list="cocktails" type="text" name="search_query"
+          placeholder="Ingredient 2">
+
+        <datalist id="cocktails">
+          {{#each ingredArray}}
+          <option value="{{this}}"></option>
+          {{/each}}
+        </datalist></div>
+
+
+      <div class="d-flex justify-content-center"><button>Find cocktails!</button></div>
+
+    </form>
+
+  </div>
+</div>
+
+{{!-- <div class="d-flex justify-content-center text-center">
+  {{search_ingredient}}
+</div>
 <div>
 
   <div class="d-flex justify-content-center">
@@ -39,7 +88,7 @@
   </div>
 
 
-</div>
+</div> --}}
 
 
 {{!-- #################################################### --}}
@@ -54,19 +103,18 @@
 
   <div class="tag-pink">
 
-    <img src=" {{this.strDrinkThumb}}" class="img-nav">
+    <img src=" {{this.strDrinkThumb}}" class="img-drink">
 
-    <h3 class="d-flex justify-content-center text-center">{{this.strDrink}}</h3>
+    <h3 class="d-flex justify-content-center text-center shadow-title">{{this.strDrink}}</h3>
 
-    <div class="d-flex justify-content-center">
+    <div class="d-flex justify-content-center font-light">
       <div class="div-marg">
-        <p class="text-center"><b>Ingredients: </b></p>
 
         {{#each this.strIngredMeasure}}
 
         {{#contains ../../search_ingredient (downcase this.Ingred) }}
 
-        <p class="green">
+        <p class="orange">
           {{this.Ingred}}
         </p>
         {{else}}
@@ -80,21 +128,31 @@
       </div>
 
       <div class="div-marg">
-        <p class="text-center"><b>Measure:</b></p>
 
         {{#each this.strIngredMeasure}}
+        {{#contains ../../search_ingredient (downcase this.Ingred) }}
+
+        <p class="orange">
+          {{this.Measure}}
+        </p>
+        {{else}}
+
         <p>
           {{this.Measure}}
         </p>
+
+        {{/contains}}
         {{/each}}
 
       </div>
     </div>
 
-    <div>
-      <h3 class="d-flex justify-content-center text-center">Instructions</h3>
+    <hr>
 
-      <p class="text-center">{{this.strInstructions}}</p>
+    <div>
+      {{!-- <h3 class="d-flex justify-content-center text-center">Instructions</h3> --}}
+
+      <p class="text-center font-light">{{this.strInstructions}}</p>
     </div>
 
     {{!-- Link to the EDIT page (ID in the address to know which book to edit) --}}
@@ -113,9 +171,12 @@
 
   <div class="tag-blue">
 
-    <h3 class="d-flex justify-content-center text-center">{{this.strDrink}}</h3>
+    <img src=" {{this.strDrinkThumb}}" class="img-drink">
 
-    <div class="d-flex justify-content-center">
+
+    <h3 class="d-flex justify-content-center text-center shadow-title">{{this.strDrink}}</h3>
+
+    <div class="d-flex justify-content-center font-light">
       <div class="div-marg">
         <p class="text-center"><b>Ingredients: </b></p>
 
@@ -123,11 +184,11 @@
 
         {{#contains ../../search_ingredient (downcase this.Ingred) }}
 
-        <p class="green">
+        <p class="orange">
           {{this.Ingred}}
         </p>
         {{else}}
-        <p class="red">
+        <p>
           {{this.Ingred}}
         </p>
         {{/contains}}
@@ -140,18 +201,29 @@
         <p class="text-center"><b>Measure:</b></p>
 
         {{#each this.strIngredMeasure}}
+
+        {{#contains ../../search_ingredient (downcase this.Ingred) }}
+
+        <p class="orange">
+          {{this.Measure}}
+        </p>
+        {{else}}
         <p>
           {{this.Measure}}
         </p>
+
+        {{/contains}}
         {{/each}}
 
       </div>
     </div>
 
-    <div>
-      <h3 class="d-flex justify-content-center text-center">Instructions</h3>
+    <hr>
 
-      <p class="text-center">{{this.strInstructions}}</p>
+    <div>
+      {{!-- <h3 class="d-flex justify-content-center text-center">Instructions</h3> --}}
+
+      <p class="text-center font-light">{{this.strInstructions}}</p>
     </div>
   </div>
 
