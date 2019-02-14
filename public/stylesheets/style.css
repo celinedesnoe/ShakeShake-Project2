@@ -26,7 +26,7 @@ a {
   padding: 5%; }
 
 h2 {
-  margin: 5%; }
+  margin: 3%; }
 
 button {
   background-color: #ff6c00;
@@ -85,5 +85,9 @@ label {
 hr {
   border-top: 1px solid #ff6c00;
   width: 20%; }
+
+.ingred-measure {
+  margin-block-end: 0;
+  font-size: 0.9em; }
 
 /*# sourceMappingURL=style.css.map */
