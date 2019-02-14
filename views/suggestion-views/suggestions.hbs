@@ -1,6 +1,7 @@
 {{#each spotlightIngredientsArray}}
 <h2>{{this.name}}</h2>
-<h4>You can make a <a href="/search/{{this.nextCocktail}}" method="POST">{{this.nextCocktail.strDrink}} </a>if you get
+<h4>You can make a <a href="/search/{{this.nextCocktail.strDrink}}" method="POST">{{this.nextCocktail.strDrink}} </a>if
+  you get
   this!</h4>
 <h4>This ingredient is used in <a href="/search-result-ingred/{{this.name}}" method:"POST"
     value="{{this.name}}" />{{this.score}}

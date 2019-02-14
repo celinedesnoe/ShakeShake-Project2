@@ -206,47 +206,47 @@ router.get("/suggestions", (req, res, next) => {
 
       // console.log(ingredientsUntilOneCocktail);
 
-      // let possibleCocktailsArray = Array.from(possibleCocktails);
-      // possibleCocktailsArray.sort(
-      //   (a, b) => a.ingredientsDifference - b.ingredientsDifference
-      // );
-      // const recommendedIngredients = new Set();
+      let possibleCocktailsArray = Array.from(possibleCocktails);
+      possibleCocktailsArray.sort(
+        (a, b) => a.ingredientsDifference - b.ingredientsDifference
+      );
+      const recommendedIngredients = new Set();
       // parcourt tous les cocktails possibles (au moins 1 ingredient en commun avec l'utilisateur)
-      // possibleCocktailsArray.forEach(cocktail => {
-      //   // parcourt tout les ingredients du cocktail en question
+      possibleCocktailsArray.forEach(cocktail => {
+        // parcourt tout les ingredients du cocktail en question
 
-      //   cocktail.strIngredAll.forEach(ingredient => {
-      //     score = 0;
-      //     // si l'utilisateur ne possede pas l'ingredient en question (sinon il le possede deja donc aucun interet)
-      //     if (!userIngredientsArray.includes(ingredient.toLowerCase())) {
-      //       // parcourt tous les cocktails de la base de données
+        cocktail.strIngredAll.forEach(ingredient => {
+          score = 0;
+          // si l'utilisateur ne possede pas l'ingredient en question (sinon il le possede deja donc aucun interet)
+          if (!userIngredientsArray.includes(ingredient.toLowerCase())) {
+            // parcourt tous les cocktails de la base de données
 
-      //       cocktails.forEach(cocktail => {
-      //         // si les ingredients du cocktail itéré contiennent l'ingredient en question, augmenter la valeur score
-      //         if (cocktail.strIngredAll.includes(ingredient)) {
-      //           score++;
-      //         }
-      //       });
-      //       // une fois la boucle terminée, ajouter l'ingrédient avec son nom et son score aux ingrédients recommandés
+            cocktails.forEach(cocktail => {
+              // si les ingredients du cocktail itéré contiennent l'ingredient en question, augmenter la valeur score
+              if (cocktail.strIngredAll.includes(ingredient)) {
+                score++;
+              }
+            });
+            // une fois la boucle terminée, ajouter l'ingrédient avec son nom et son score aux ingrédients recommandés
 
-      //       //if recommendedIngredients !== include do this
+            //if recommendedIngredients !== include do this
 
-      //       recommendedIngredients.add(
-      //         (ingredient = {
-      //           name: ingredient.toLowerCase(),
-      //           score: score
-      //         })
-      //       );
-      //     }
-      //   });
-      // });
-      // recommendedIngredientsUnique = Array.from(recommendedIngredients);
+            recommendedIngredients.add(
+              (ingredient = {
+                name: ingredient.toLowerCase(),
+                score: score
+              })
+            );
+          }
+        });
+      });
+      recommendedIngredientsUnique = Array.from(recommendedIngredients);
 
-      // console.log(recommendedIngredients);
+      console.log(recommendedIngredients);
 
-      // getUnique(recommendedIngredientsUnique, "name");
+      getUnique(recommendedIngredientsUnique, "name");
       res.locals.spotlightIngredientsArray = Array.from(ingredientsNeeded);
-      // res.locals.recommendedIngredientsArray = unique;
+      res.locals.recommendedIngredientsArray = unique;
       res.render("suggestion-views/suggestions.hbs");
     })
     .catch();
