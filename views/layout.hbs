@@ -48,12 +48,18 @@
         <li class="nav-item">
           <a class="nav-link nav-link-custom" href="/suggestions">What should I buy ?</a>
         </li>
+        {{#if currentUser}}
+        <li class="nav-item">
+          <a class="nav-link nav-link-custom" href="/logout">Log-Out</a>
+        </li>
+        {{else}}
         <li class="nav-item">
           <a class="nav-link nav-link-custom" href="/login">Log-in</a>
         </li>
         <li class="nav-item">
           <a class="nav-link nav-link-custom" href="/signup">Sign-up</a>
         </li>
+        {{/if}}
       </ul>
     </div>
   </nav>
