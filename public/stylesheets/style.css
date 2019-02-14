@@ -1,7 +1,7 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   font-family: "Lobster", cursive;
-  background-image: url("../images/shakeshakebackground4.jpg"); }
+  background-image: url("../images/shakeshakebackground.jpg"); }
 
 a {
   color: #00b7ff; }
@@ -38,9 +38,13 @@ button {
 .green {
   color: green; }
 
+.title {
+  color: white;
+  text-shadow: 2px 2px #282d4f; }
+
 .multi-col {
   text-align: center;
-  column-width: 25em;
+  column-width: 20em;
   margin: auto;
   padding: 20px; }
 
@@ -50,14 +54,16 @@ button {
   background-color: #282d4f;
   color: white;
   padding: 10px 10px;
-  border-radius: 2px; }
+  border-radius: 2px;
+  border: 1px solid #ff6c00; }
 
 .tag-pink {
   margin-bottom: 15px;
   break-inside: avoid;
   background-color: #a0204c;
   color: white;
-  padding: 10px 10px; }
+  padding: 10px 10px;
+  border: 1px solid #ff6c00; }
 
 .shadow-title {
   text-shadow: 2px 2px #ff6c00;
@@ -65,9 +71,12 @@ button {
 
 .font-light {
   font-family: "Bad Script", cursive;
-  font-size: 1.5em; }
+  font-size: 1em; }
 
 .flexbox {
   display: flex; }
+
+label {
+  color: white; }
 
 /*# sourceMappingURL=style.css.map */

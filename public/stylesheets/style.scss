@@ -55,9 +55,14 @@ button {
   color: green;
 }
 
+.title {
+  color: white;
+  text-shadow: 2px 2px #282d4f;
+}
+
 .multi-col {
   text-align: center;
-  column-width: 25em;
+  column-width: 20em;
   margin: auto;
   padding: 20px;
 }
@@ -69,6 +74,7 @@ button {
   color: white;
   padding: 10px 10px;
   border-radius: 2px;
+  border: 1px solid #ff6c00;
 }
 
 .tag-pink {
@@ -77,6 +83,7 @@ button {
   background-color: #a0204c;
   color: white;
   padding: 10px 10px;
+  border: 1px solid #ff6c00;
 }
 
 .shadow-title {
@@ -86,9 +93,13 @@ button {
 
 .font-light {
   font-family: "Bad Script", cursive;
-  font-size: 1.5em;
+  font-size: 1em;
 }
 
 .flexbox {
   display: flex;
+}
+
+label {
+  color: white;
 }
