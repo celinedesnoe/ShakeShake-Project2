@@ -103,7 +103,10 @@ router.get("/search-result-ingred", (req, res, next) => {
     const userCocktails = userDoc.cocktailCreated;
     console.log(userDoc);
     userCocktails.forEach(drink => {
-      drinks.push(drink);
+      if (drink.strDrink === search_query) {
+        console.log("CONSOLE LOG", drink.strDrink, "=", search_query);
+        drinks.push(drink);
+      }
     });
   });
 

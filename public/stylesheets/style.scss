@@ -31,6 +31,13 @@ a {
   border-radius: 50%;
 }
 
+.img-drink {
+  height: 40%;
+  width: 40%;
+  border-radius: 50%;
+  padding: 5%;
+}
+
 h2 {
   margin: 5%;
 }
@@ -47,12 +54,8 @@ button {
   margin: 2% 5%;
 }
 
-.red {
-  color: lightgrey;
-}
-
-.green {
-  color: green;
+.orange {
+  color: #ff6c00;
 }
 
 .title {
@@ -102,4 +105,9 @@ button {
 
 label {
   color: white;
+}
+
+hr {
+  border-top: 1px solid #ff6c00;
+  width: 20%;
 }
