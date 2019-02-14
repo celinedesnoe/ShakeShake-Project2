@@ -9,8 +9,10 @@ router.get("/mybar", (req, res, rext) => {
   User.findById(req.user._id)
     .then(user => {
       userIngredientsArray = user.ingredients;
+      userCocktails = user.cocktailCreated;
       userIngredientsArray.sort();
       res.locals.userIngredientsArray = user.ingredients;
+      console.log(userCocktails);
     })
     .catch(err => next(err));
   // console.log(host);

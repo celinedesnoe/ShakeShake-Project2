@@ -20,7 +20,9 @@ const helpers = require("handlebars-helpers")();
 require("./config/passport-setup");
 
 mongoose
-  .connect("mongodb://localhost/cocktails", { useNewUrlParser: true })
+  .connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true
+  })
   .then(x => {
     console.log(
       `Connected to Mongo! Database name: "${x.connections[0].name}"`
@@ -66,7 +68,7 @@ app.use(
     saveUninitialized: true,
     resase: true,
     // secret should be a string that's different for every app
-    secret: "ca^khT8KYd,G73C7R9(;^atb?h>FTWdbn4pqEFUKs3",
+    secret: process.env.SESSION_SECRET,
     // store our session data inside our Mongodb with the connect-mongo package
     store: new MongoStore({ mongooseConnection: mongoose.connection })
   })
