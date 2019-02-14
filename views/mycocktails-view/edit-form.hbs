@@ -1,0 +1,78 @@
+<h2>Edit your cocktail </h2>
+
+<form action="/mycocktails/{{cocktailItem.strDrink}}/process-edit" method="POST">
+
+  <div>
+    <label>
+      Drink Name:
+      <input type="text" name="strDrink" value="{{cocktailItem.strDrink}}">
+    </label>
+  </div>
+
+
+  <div>
+    <label>
+      Ingredients and Measures:
+      <div>
+        <input type="text" name="strIngredient1" value="{{cocktailItem.strIngredient1}}">
+        <input type="text" name="strMeasure1" value="{{cocktailItem.strMeasure1}}">
+      </div>
+
+      <div>
+        <input type="text" name="strIngredient2" value="{{cocktailItem.strIngredient2}}">
+        <input type="text" name="strMeasure2" value="{{cocktailItem.strMeasure2}}">
+      </div>
+
+      <div class="new-field">
+        <input type="text" name="strIngredient3" value="{{cocktailItem.strIngredient3}}">
+        <input type="text" name="strMeasure3" value="{{cocktailItem.strMeasure3}}">
+      </div>
+
+      <div class="new-field">
+        <input type="text" name="strIngredient4" value="{{cocktailItem.strIngredient4}}">
+        <input type="text" name="strMeasure4" value="{{cocktailItem.strMeasure4}}">
+      </div>
+
+      <div class="new-field">
+        <input type="text" name="strIngredient5" value="{{cocktailItem.strIngredient5}}">
+        <input type="text" name="strMeasure5" value="{{cocktailItem.strMeasure5}}">
+      </div>
+
+      <div class="new-field">
+        <input type="text" name="strIngredient6" value="{{cocktailItem.strIngredient6}}">
+        <input type="text" name="strMeasure6" value="{{cocktailItem.strMeasure6}}">
+      </div>
+
+      <div class="new-field">
+        <input type="text" name="strIngredient7" value="{{cocktailItem.strIngredient7}}">
+        <input type="text" name="strMeasure7" value="{{cocktailItem.strMeasure7}}">
+      </div>
+
+      <div class="new-field">
+        <input type="text" name="strIngredient8" value="{{cocktailItem.strIngredient8}}">
+        <input type="text" name="strMeasure8" value="{{cocktailItem.strMeasure8}}">
+      </div>
+
+      <div class="new-field">
+        <input type="text" name="strIngredient9" value="{{cocktailItem.strIngredient9}}">
+        <input type="text" name="strMeasure9" value="{{cocktailItem.strMeasure9}}">
+      </div>
+
+      <div>
+        <a class="add-field">Add more ingredient</a>
+      </div>
+
+    </label>
+
+  </div>
+
+  <label>
+    Instructions:
+    <div>
+      <input type="text" name="strInstructions" value="{{cocktailItem.strInstructions}}">
+    </div>
+  </label>
+
+
+  <button>Save</button>
+</form>

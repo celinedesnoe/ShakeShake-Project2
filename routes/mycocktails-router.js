@@ -24,17 +24,138 @@ router.get("/mycocktails", (req, res, next) => {
     .catch(err => next(err));
 });
 
+// #####################################################
+// To delete a cocktail of the user
+// #####################################################
+
 router.get("/mycocktails/:cocktailId/delete", (req, res, next) => {
   const { cocktailId } = req.params;
   const userLog = req.user._id;
-
-  console.log("nom du cocktail" + cocktailId);
 
   User.findByIdAndUpdate(userLog, {
     $pull: { cocktailCreated: { strDrink: cocktailId } }
   })
     .then(userDoc => {
       res.redirect("/mycocktails");
+    })
+    .catch(err => next(err));
+});
+
+// #####################################################
+// To update a cocktail of the user
+// #####################################################
+
+router.get("/mycocktails/:cocktailId/edit", (req, res, next) => {
+  const { cocktailId } = req.params;
+  const userLog = req.user._id;
+
+  User.findById(userLog)
+    .then(userDoc => {
+      var userCocktailsArray = userDoc.cocktailCreated;
+
+      var userCocktail = userCocktailsArray.filter(item => {
+        return item.strDrink === cocktailId;
+      });
+
+      res.locals.userItem = userDoc;
+      res.locals.cocktailItem = userCocktail[0];
+      res.render("mycocktails-view/edit-form.hbs");
+    })
+    .catch(err => next(err));
+});
+
+router.post("/mycocktails/:cocktailId/process-edit", (req, res, next) => {
+  const { cocktailId } = req.params;
+  const userLog = req.user._id;
+  const {
+    strDrink,
+    strIngredient1,
+    strMeasure1,
+    strIngredient2,
+    strMeasure2,
+    strIngredient3,
+    strMeasure3,
+    strIngredient4,
+    strMeasure4,
+    strIngredient5,
+    strMeasure5,
+    strIngredient6,
+    strMeasure6,
+    strIngredient7,
+    strMeasure7,
+    strIngredient8,
+    strMeasure8,
+    strIngredient9,
+    strMeasure9,
+    strInstructions
+  } = req.body;
+
+  const IngredMeasure = [
+    { Ingred: strIngredient1, Measure: strMeasure1 },
+    { Ingred: strIngredient2, Measure: strMeasure2 },
+    { Ingred: strIngredient3, Measure: strMeasure3 },
+    { Ingred: strIngredient4, Measure: strMeasure4 },
+    { Ingred: strIngredient5, Measure: strMeasure5 },
+    { Ingred: strIngredient6, Measure: strMeasure6 },
+    { Ingred: strIngredient7, Measure: strMeasure7 },
+    { Ingred: strIngredient8, Measure: strMeasure8 },
+    { Ingred: strIngredient9, Measure: strMeasure9 }
+  ];
+
+  strIngredMeasure = IngredMeasure.filter(item => {
+    return item.Ingred !== "";
+  });
+
+  let IngredAll = [
+    strIngredient1,
+    strIngredient2,
+    strIngredient3,
+    strIngredient4,
+    strIngredient5,
+    strIngredient6,
+    strIngredient7,
+    strIngredient8,
+    strIngredient9
+  ];
+
+  strIngredAll = IngredAll.filter(item => {
+    return item !== "";
+  });
+
+  User.findByIdAndUpdate(
+    userLog,
+    {
+      $set: {
+        cocktailCreated: {
+          strDrink,
+          strIngredient1,
+          strMeasure1,
+          strIngredient2,
+          strMeasure2,
+          strIngredient3,
+          strMeasure3,
+          strIngredient4,
+          strMeasure4,
+          strIngredient5,
+          strMeasure5,
+          strIngredient6,
+          strMeasure6,
+          strIngredient7,
+          strMeasure7,
+          strIngredient8,
+          strMeasure8,
+          strIngredient9,
+          strMeasure9,
+          strInstructions,
+          strIngredMeasure,
+          strIngredAll
+        }
+      }
+    },
+    { runvalidators: true }
+  )
+    .then(userDoc => {
+      res.redirect(`/mycocktails`);
     })
     .catch(err => next(err));
 });
