@@ -28,6 +28,8 @@ router.post(
       var strDrinkThumb = req.file.secure_url;
     }
 
+    console.log("Lien Image", strDrinkThumb);
+
     const {
       strDrink,
       strIngredient1,
@@ -84,6 +86,8 @@ router.post(
     });
 
     const userCreated = true;
+
+    console.log("userCreated is", userCreated);
 
     console.log("The array" + strIngredAll);
 

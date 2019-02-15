@@ -75,9 +75,11 @@ router.post(
   (req, res, next) => {
     const { cocktailId } = req.params;
     const userLog = req.user._id;
+
     if (strDrinkThumb) {
       var strDrinkThumb = req.file.secure_url;
     }
+
     const {
       strDrink,
       strIngredient1,

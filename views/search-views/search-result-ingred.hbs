@@ -1,8 +1,15 @@
 <h2 class="d-flex justify-content-center text-center title">The cocktails you can do with:</h2>
+{{#each search_ingredient}}
+<h3 class="d-flex justify-content-center text-center title">
+
+
+  {{this}}</h3>
+
+{{/each}}
 
 <div class="d-flex flex-row justify-content-center">
 
-  <div class="d-flex align-content-center flex-column col-5">
+  <div class="d-flex align-content-center flex-column col-6">
     <form action="search-result-drink" method="GET">
       <div class="d-flex justify-content-center"><label>by Name</label></div>
       <div class="d-flex justify-content-center"><input type="text" name="search_query"></div>
@@ -10,11 +17,9 @@
     </form>
   </div>
 
-  <div class="col-2">
-    <p>OR</p>
-  </div>
 
-  <div class="align-content-center flex-column col-5">
+
+  <div class="align-content-center flex-column col-6">
     <form action="/search-result-ingred" method="GET" id="ingred-list">
       <div class="d-flex justify-content-center"><label>by Ingredients</label></div>
 
@@ -99,7 +104,7 @@
 
   {{#each ingredArray}}
 
-  {{#and true  this.userCreated}}
+  {{#and true this.userCreated}}
 
   <div class="tag-pink">
 
@@ -114,11 +119,11 @@
 
         {{#contains ../../search_ingredient (downcase this.Ingred) }}
 
-        <p class="orange">
+        <p class="orange ingred-measure">
           {{this.Ingred}}
         </p>
         {{else}}
-        <p class="red">
+        <p class="ingred-measure">
           {{this.Ingred}}
         </p>
         {{/contains}}
@@ -132,12 +137,12 @@
         {{#each this.strIngredMeasure}}
         {{#contains ../../search_ingredient (downcase this.Ingred) }}
 
-        <p class="orange">
+        <p class="orange ingred-measure">
           {{this.Measure}}
         </p>
         {{else}}
 
-        <p>
+        <p class="ingred-measure">
           {{this.Measure}}
         </p>
 
@@ -155,11 +160,14 @@
       <p class="text-center font-light">{{this.strInstructions}}</p>
     </div>
 
-    {{!-- Link to the EDIT page (ID in the address to know which book to edit) --}}
-    <a href="/mycocktails/{{this.strDrink}}/edit">Edit</a>
+    <div class="d-flex justify-content-around">
+      {{!-- Link to the EDIT page (ID in the address to know which book to edit) --}}
+      <div><button><a href="/mycocktails/{{this.strDrink}}/edit" class="font-light no-link">Edit</a></button></div>
 
-    {{!-- Link to the DELETE route (ID in address to know which book to delete) --}}
-    <a href="/mycocktails/{{this.strDrink}}/delete">Delete</a>
+      {{!-- Link to the DELETE route (ID in address to know which book to delete) --}}
+      <div><button><a href="/mycocktails/{{this.strDrink}}/delete" class="font-light no-link">Delete</a></button></div>
+
+    </div>
 
   </div>
 
@@ -178,17 +186,16 @@
 
     <div class="d-flex justify-content-center font-light">
       <div class="div-marg">
-        <p class="text-center"><b>Ingredients: </b></p>
 
         {{#each this.strIngredMeasure}}
 
         {{#contains ../../search_ingredient (downcase this.Ingred) }}
 
-        <p class="orange">
+        <p class="orange ingred-measure">
           {{this.Ingred}}
         </p>
         {{else}}
-        <p>
+        <p class="ingred-measure">
           {{this.Ingred}}
         </p>
         {{/contains}}
@@ -198,17 +205,16 @@
       </div>
 
       <div class="div-marg">
-        <p class="text-center"><b>Measure:</b></p>
 
         {{#each this.strIngredMeasure}}
 
         {{#contains ../../search_ingredient (downcase this.Ingred) }}
 
-        <p class="orange">
+        <p class="orange ingred-measure">
           {{this.Measure}}
         </p>
         {{else}}
-        <p>
+        <p class="ingred-measure">
           {{this.Measure}}
         </p>
 

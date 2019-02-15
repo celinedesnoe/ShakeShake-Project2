@@ -73,7 +73,9 @@ router.get("/search-result-drink", (req, res, next) => {
     const userCocktails = userDoc.cocktailCreated;
     console.log(userDoc);
     userCocktails.forEach(drink => {
-      drinks.push(drink);
+      if (drink.strDrink === search_query) {
+        drinks.push(drink);
+      }
     });
   });
 
@@ -106,13 +108,15 @@ router.get("/search-result-ingred", (req, res, next) => {
   //-----------------------------------------------------------------
   User.findById(req.user._id).then(userDoc => {
     const userCocktails = userDoc.cocktailCreated;
-    console.log(userDoc);
-    userCocktails.forEach(drink => {
-      if (drink.strDrink === search_query) {
-        console.log("CONSOLE LOG", drink.strDrink, "=", search_query);
-        drinks.push(drink);
-      }
-    });
+    userCocktails.forEach(drink =>
+      drink.strIngredAll.forEach(ingred => {
+        if (ingred === search_query[0] || ingred === search_query[1]) {
+          drinks.push(drink);
+        } else if (ingred === search_query[0] && ingred === search_query[1]) {
+          drinks.push(drink);
+        }
+      })
+    );
   });
 
   //-----------------------------------------------------------------

@@ -73,6 +73,7 @@ body {
 .login-home h1 {
   font-size: 5em; }
 
+<<<<<<< HEAD
 .ingredient-search {
   margin-top: 5%;
   margin-bottom: 5%; }
@@ -96,6 +97,8 @@ body {
 .suggestion form {
   margin-top: 8%; }
 
+=======
+>>>>>>> 20834b6592c0c2152c128ecb2984d07e3eaf1547
 a {
   color: #00b7ff; }
 
@@ -141,7 +144,12 @@ button {
   color: white;
   padding: 5px;
   border-radius: 12px;
-  border-style: 0; }
+  border-style: 0;
+  text-decoration: none; }
+
+.no-link {
+  text-decoration: none;
+  color: white; }
 
 .div-marg {
   margin: 2% 5%; }
@@ -205,5 +213,16 @@ input {
   opacity: 0.8;
   border-radius: 1em;
   text-align: center; }
+
+.border-add-ingred {
+  border: 1px solid white;
+  border-radius: 10px;
+  text-align: center; }
+
+input {
+  margin-bottom: 2%; }
+
+h3 {
+  margin-bottom: 2%; }
 
 /*# sourceMappingURL=style.css.map */
