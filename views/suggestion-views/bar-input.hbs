@@ -7,45 +7,75 @@
   </form>
 
   {{/each}} --}}
-</div>
-<main class="multi-col">
-  <div class="d-flex justify-content-center tag-blue">
-    <form action="/process-bar" method="POST" id="ingred-list">
-      <label>Search an ingredient :</label><br>
+{{!-- </div> --}}
+<div class="container ingredient-search">
 
-      <input list="cocktails" type="text" name="search_query" required="true">
+  <div class=" row">
+    <div class="col">
 
-      <datalist id="cocktails">
+    </div>
+    <div class="col">
+      <div class="barinput">
 
-        {{#each ingredArray}}
-        <option value="{{this}}"></option>
+
+        <form width="100%" class="flexcolumn" action="/process-bar" method="POST">
+
+
+
+          <input list="cocktails" type="text" name="search_query" required="true">
+
+          <datalist id="cocktails">
+
+            {{#each ingredArray}}
+            <option value="{{this}}"></option>
+            {{/each}}
+          </datalist>
+
+
+
+          <datalist id="cocktails">
+            {{#each ingredArray}}
+            <option value="{{this}}"></option>
+            {{/each}}
+          </datalist>
+
+
+          <label for="">
+            <button>Add an ingredient !</button></label>
+
+        </form>
+
+      </div>
+      <div class="containerIngredient">
+
+        {{#each userIngredientsArray}}
+
+        <form action="/process-bar-remove" method="POST" id="user_ingredient">
+          <button name="ingredient" value="{{this}}">{{this}} | <b> ✘</b></button>
+        </form>
+
         {{/each}}
-      </datalist>
+      </div>
+    </div>
+    <div class="col">
 
-
-
-      <datalist id="cocktails">
-        {{#each ingredArray}}
-        <option value="{{this}}"></option>
-        {{/each}}
-      </datalist>
-
-
-      <button>Add to my bar !</button>
-    </form>
-
-    <h4>My bar :</h4>
-    <div class="containerIngredient">
-
-      {{#each userIngredientsArray}}
-
-      <form action="/process-bar-remove" method="POST" id="user_ingredient">
-        <button name="ingredient" value="{{this}}">{{this}}</button>
-      </form>
-
-      {{/each}}
     </div>
   </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<main class="multi-col">
+
+
+
 
 
 

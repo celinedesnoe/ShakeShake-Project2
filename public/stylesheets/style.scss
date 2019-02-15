@@ -29,6 +29,38 @@ body {
 .logobox {
   width: 30%;
 }
+.barinput {
+  margin-top: 3%;
+  text-align: center;
+  align-content: center;
+  width: 100%;
+}
+.barinput label {
+  margin-top: 10px;
+  width: 100%;
+}
+.barinput input {
+  width: 100%;
+  font-size: 1.8em;
+}
+.barinput h2 {
+  margin: 1%;
+}
+.barinput button {
+  width: 100%;
+  font-size: 1.2em;
+}
+
+.containerIngredient {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: auto;
+}
+
+.containerIngredient form {
+  margin: 2px 4px;
+}
 .homelogin {
   margin-top: 3%;
   text-align: center;
@@ -53,8 +85,33 @@ body {
 .login-home h1 {
   font-size: 5em;
 }
-homelogin {
-  width: "";
+
+.ingredient-search {
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+.suggestion {
+  text-align: center;
+}
+
+.suggestion a {
+  color: #ff6c00;
+}
+.suggestion h3 {
+  font-family: "Lobster", cursive;
+  text-shadow: 2px 2px #ff6c00;
+}
+
+.suggestion h4 {
+  font-family: "Lobster", cursive;
+}
+
+.suggestion h6 {
+  font-family: "Bad Script", cursive;
+}
+
+.suggestion form {
+  margin-top: 8%;
 }
 
 a {
@@ -153,7 +210,7 @@ button {
 }
 
 .shadow-title {
-  text-shadow: 2px 2px #faf7f6;
+  text-shadow: 2px 2px #ff6c00;
   box-shadow: none;
 }
 

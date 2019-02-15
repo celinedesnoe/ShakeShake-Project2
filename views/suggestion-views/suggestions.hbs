@@ -1,3 +1,31 @@
+<div class="container">
+
+
+  <div class="col-3">
+    {{#each spotlightIngredientsArray}}
+    <div class="tag-blue suggestion">
+      <h3>{{this.name}}</h3>
+      <h6>You can make a <div>
+          <h4><a href="/search/{{this.nextCocktail.strDrink}}" method="POST">{{this.nextCocktail.strDrink}}
+            </a></h4>
+        </div>if
+        you get
+        this!</h6>
+
+      <form action="/process-bar-suggestions" method="POST">
+        <button name="ingredient" value="{{this.name}}">Add to my bar</button>
+      </form>
+    </div>
+    {{/each}}
+  </div>
+
+
+</div>
+
+
+
+
+
 <main class="multi-col">
   {{#each spotlightIngredientsArray}}
   <div class="tag-blue">

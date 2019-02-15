@@ -80,7 +80,7 @@ router.get("/mybar", (req, res, rext) => {
   }
 });
 
-// router.post("/process-bar", (req, res, next) => {
+// router.post("/process-bar-ingredient", (req, res, next) => {
 //   const { ingredient } = req.body;
 
 //   User.findByIdAndUpdate(
@@ -89,7 +89,7 @@ router.get("/mybar", (req, res, rext) => {
 //     { $push: { ingredients: ingredient } },
 //     { runValidators: true, new: true }
 //   )
-//     .then(() => res.redirect(`/mybar`))
+//     .then(() => res.redirect(`/suggestions`))
 //     .catch(err => next(err));
 // });
 
@@ -142,6 +142,7 @@ router.get("/suggestions", (req, res, next) => {
       .then(user => {
         // console.log("first", user.ingredients);
         userIngredientsArray = user.ingredients;
+        userCreatedCocktails = user.cocktailCreated;
       })
       .then(() => {
         // regarder tous les cocktails
