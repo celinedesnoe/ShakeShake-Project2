@@ -100,10 +100,12 @@ body {
 .suggestion h3 {
   font-family: "Lobster", cursive;
   text-shadow: 2px 2px #ff6c00;
+  margin-bottom: 10%;
 }
 
 .suggestion h4 {
   font-family: "Lobster", cursive;
+  margin-bottom: 0;
 }
 
 .suggestion h6 {
@@ -111,7 +113,7 @@ body {
 }
 
 .suggestion form {
-  margin-top: 8%;
+  margin-top: 40px;
 }
 
 a {
@@ -126,6 +128,7 @@ a {
   align-items: center;
   border-radius: 2px;
   background-color: #282d4f;
+  height: 180px;
 }
 
 .homecard h2 {
@@ -169,6 +172,8 @@ button {
   border-radius: 12px;
   border-style: 0;
   text-decoration: none;
+  padding: 2px 15px;
+  border: none;
 }
 
 .no-link {
@@ -264,4 +269,16 @@ input {
 
 h3 {
   margin-bottom: 2%;
+}
+
+.mySpotlight {
+  height: 220px;
+  margin-bottom: 20px;
+  .suggestion {
+    height: 100%;
+  }
+}
+
+.margin50 {
+  margin: 0 50px;
 }

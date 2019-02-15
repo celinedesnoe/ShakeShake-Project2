@@ -1,63 +1,46 @@
 <div class="container">
+  <div class="row">
 
-
-  <div class="col-3">
     {{#each spotlightIngredientsArray}}
-    <div class="tag-blue suggestion">
-      <h3>{{this.name}}</h3>
-      <h6>You can make a <div>
-          <h4><a href="/search/{{this.nextCocktail.strDrink}}" method="POST">{{this.nextCocktail.strDrink}}
-            </a></h4>
-        </div>if
-        you get
-        this!</h6>
+    <div class="col-lg-3 col-md-6 mySpotlight">
+      <div class="tag-blue suggestion">
+        <h3>{{this.name}}</h3>
+        <h6>You can make a <div>
+            <h4><a href="/search/{{this.nextCocktail.strDrink}}" method="POST">{{this.nextCocktail.strDrink}}
+              </a></h4>
+          </div>if
+          you get
+          this!</h6>
 
-      <form action="/process-bar-suggestions" method="POST">
-        <button name="ingredient" value="{{this.name}}">Add to my bar</button>
-      </form>
+        <form action="/process-bar-suggestions" method="POST">
+          <button name="ingredient" value="{{this.name}}">Add to my bar</button>
+        </form>
+      </div>
     </div>
     {{/each}}
   </div>
 
-
 </div>
 
 
+<div class="container">
+  <div class="row">
 
+    {{#each recommendedIngredientsArray}}
+    <div class="col-lg-3 col-md-6 mySpotlight">
+      <div class="tag-blue suggestion">
+        <h3>{{this.name}}</h3>
+        <h6>This ingredient is used in <div>
+            <h4><a href="/search-result-ingred/{{this.name}}" method:"POST" value="{{this.name}}" />{{this.score}}
+              cocktails !</a>
+          </div>
+          </h4>
+        </h6>
 
-
-<main class="multi-col">
-  {{#each spotlightIngredientsArray}}
-  <div class="tag-blue">
-    <h2>{{this.name}}</h2>
-    <h4>You can make a <div><a href="/search/{{this.nextCocktail.strDrink}}"
-          method="POST">{{this.nextCocktail.strDrink}}
-        </a></div>if
-      you get
-      this!</h4>
-
-    <form action="/process-bar-suggestions" method="POST">
-      <button name="ingredient" value="{{this.name}}">Add this to my bar.</button>
-    </form>
+        <form action="/process-bar-suggestions" method="POST">
+          <button name="ingredient" value="{{this.name}}">Add to my bar</button>
+        </form>
+      </div>
+    </div>
+    {{/each}}
   </div>
-  {{/each}}
-
-
-
-
-
-
-
-  {{#each recommendedIngredientsArray}}
-  <div class="tag-blue">
-    <h2>{{this.name}}</h2>
-    <h4>This ingredient is used in <div><a href="/search-result-ingred/{{this.name}}" method:"POST"
-          value="{{this.name}}" />{{this.score}}
-        cocktails !</a></div>
-    </h4>
-    <form action="/process-bar-suggestions" method="POST">
-      <button name="ingredient" value="{{this.name}}">Add this to my bar.</button>
-    </form>
-  </div>
-  {{/each}}
-</main>

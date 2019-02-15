@@ -1,20 +1,7 @@
-{{!-- <div class="containerIngredient">
-
-  {{#each userIngredientsArray}}
-
-  <form action="/process-bar-remove" method="POST" id="user_ingredient">
-    <button name="ingredient" value="{{this}}">{{this}}</button>
-  </form>
-
-  {{/each}} --}}
-{{!-- </div> --}}
 <div class="container ingredient-search">
 
-  <div class=" row">
-    <div class="col">
-
-    </div>
-    <div class="col">
+  <div class=" row margin50">
+    <div class="col-lg-6">
       <div class="barinput">
 
 
@@ -46,20 +33,27 @@
         </form>
 
       </div>
+    </div>
+
+    <div class="col-lg-6">
       <div class="containerIngredient">
 
-        {{#each userIngredientsArray}}
+        <div class="row">
 
-        <form action="/process-bar-remove" method="POST" id="user_ingredient">
-          <button name="ingredient" value="{{this}}">{{this}} | <b> ✘</b></button>
-        </form>
+          {{#each userIngredientsArray}}
 
-        {{/each}}
+          <form action="/process-bar-remove" method="POST" id="user_ingredient">
+            <button name="ingredient" value="{{this}}">{{this}} | <b> ✘</b></button>
+          </form>
+
+          {{/each}}
+
+        </div>
       </div>
-    </div>
-    <div class="col">
+
 
     </div>
+
   </div>
 </div>
 
