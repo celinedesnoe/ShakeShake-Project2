@@ -261,6 +261,7 @@ input {
   border: 1px solid white;
   border-radius: 10px;
   text-align: center;
+  background-color: #ff6c00;
 }
 
 input {
@@ -281,4 +282,10 @@ h3 {
 
 .margin50 {
   margin: 0 50px;
+.ingr {
+  width: 100%;
+}
+
+.field {
+  padding: 0 20px !important;
 }
