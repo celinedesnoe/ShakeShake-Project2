@@ -24,7 +24,7 @@ router.post(
   (req, res, next) => {
     const userLog = req.user._id;
 
-    if (strDrinkThumb !== null) {
+    if (strDrinkThumb) {
       var strDrinkThumb = req.file.secure_url;
     }
 

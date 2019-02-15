@@ -76,6 +76,10 @@ router.post(
     const { cocktailId } = req.params;
     const userLog = req.user._id;
 
+    if (strDrinkThumb) {
+      var strDrinkThumb = req.file.secure_url;
+    }
+
     const {
       strDrink,
       strIngredient1,
@@ -131,47 +135,43 @@ router.post(
       return item !== "";
     });
 
-    if (strDrinkThumb !== null) {
-      var strDrinkThumb = req.file.secure_url;
-
-      User.findByIdAndUpdate(
-        userLog,
-        {
-          $set: {
-            cocktailCreated: {
-              strDrink,
-              strIngredient1,
-              strMeasure1,
-              strIngredient2,
-              strMeasure2,
-              strIngredient3,
-              strMeasure3,
-              strIngredient4,
-              strMeasure4,
-              strIngredient5,
-              strMeasure5,
-              strIngredient6,
-              strMeasure6,
-              strIngredient7,
-              strMeasure7,
-              strIngredient8,
-              strMeasure8,
-              strIngredient9,
-              strMeasure9,
-              strInstructions,
-              strIngredMeasure,
-              strIngredAll,
-              strDrinkThumb
-            }
+    User.findByIdAndUpdate(
+      userLog,
+      {
+        $set: {
+          cocktailCreated: {
+            strDrink,
+            strIngredient1,
+            strMeasure1,
+            strIngredient2,
+            strMeasure2,
+            strIngredient3,
+            strMeasure3,
+            strIngredient4,
+            strMeasure4,
+            strIngredient5,
+            strMeasure5,
+            strIngredient6,
+            strMeasure6,
+            strIngredient7,
+            strMeasure7,
+            strIngredient8,
+            strMeasure8,
+            strIngredient9,
+            strMeasure9,
+            strInstructions,
+            strIngredMeasure,
+            strIngredAll,
+            strDrinkThumb
           }
-        },
-        { runvalidators: true }
-      )
-        .then(userDoc => {
-          res.redirect(`/mycocktails`);
-        })
-        .catch(err => next(err));
-    }
+        }
+      },
+      { runvalidators: true }
+    )
+      .then(userDoc => {
+        res.redirect(`/mycocktails`);
+      })
+      .catch(err => next(err));
   }
 );
 

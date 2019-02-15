@@ -91,7 +91,12 @@ button {
   color: white;
   padding: 5px;
   border-radius: 12px;
-  border-style: 0; }
+  border-style: 0;
+  text-decoration: none; }
+
+.no-link {
+  text-decoration: none;
+  color: white; }
 
 .div-marg {
   margin: 2% 5%; }
