@@ -6,26 +6,31 @@ const User = require("../models/user-model.js");
 
 router.get("/mybar", (req, res, rext) => {
   if (req.user) {
-    const host = req.user._id;
-    User.findById(req.user._id)
-      .then(user => {
-        userIngredientsArray = user.ingredients;
-        userPersonnalIngredients = user.cocktailCreated.reduce(function(
-          prev,
-          curr
-        ) {
-          return [...prev, ...curr.strIngredAll];
-        },
-        []);
-        userIngredientsArray.sort();
-        res.locals.userIngredientsArray = user.ingredients;
-        // console.log(userPersonnalIngredients);
-      })
-      .catch(err => next(err));
+    userCreatedCocktails = req.user.cocktailCreated;
+    // console.log(userCreatedCocktails);
+    userIngredientsArray = req.user.ingredients;
+    userPersonnalIngredients = req.user.cocktailCreated.reduce(function(
+      prev,
+      curr
+    ) {
+      return [...prev, ...curr.strIngredAll];
+    },
+    []);
+    userIngredientsArray.sort();
+    res.locals.userIngredientsArray = req.user.ingredients;
+    // console.log(userPersonnalIngredients);
     // console.log(host);
+
     Cocktail.find()
       .then(result => {
+        let allCocktailsEver = [];
         // console.log(userPersonnalIngredients);
+        // result.push(userCreatedCocktails);
+        userCreatedCocktails.forEach(cocktail => {
+          result.push(cocktail);
+        });
+        console.log("USER -----\n", userCreatedCocktails[0]);
+        console.log("DB -------- \n", result[0]);
 
         const setIngredients = new Set();
         result.forEach(cocktail => {
@@ -97,7 +102,7 @@ router.post("/process-bar", (req, res, next) => {
   User.findByIdAndUpdate(
     req.user._id,
 
-    { $push: { ingredients: ingredient } },
+    { $push: { ingredients: ingredient.toLowerCase() } },
     { runValidators: true, new: true }
   )
     .then(() => res.redirect(`/mybar`))
@@ -122,7 +127,7 @@ router.post("/process-bar-remove", (req, res, next) => {
 
   User.findByIdAndUpdate(
     req.user._id,
-    { $pull: { ingredients: ingredient } },
+    { $pull: { ingredients: ingredient.toLowerCase() } },
     { runValidators: true, new: true }
   )
     .then(() => res.redirect(`/mybar`))
@@ -237,7 +242,7 @@ router.get("/suggestions", (req, res, next) => {
         possibleCocktailsArray.sort(
           (a, b) => a.ingredientsDifference - b.ingredientsDifference
         );
-        const recommendedIngredients = new Set();
+        const recommendedIngredients = [];
         // parcourt tous les cocktails possibles (au moins 1 ingredient en commun avec l'utilisateur)
         possibleCocktailsArray.forEach(cocktail => {
           // parcourt tout les ingredients du cocktail en question
@@ -258,7 +263,7 @@ router.get("/suggestions", (req, res, next) => {
 
               //if recommendedIngredients !== include do this
 
-              recommendedIngredients.add(
+              recommendedIngredients.push(
                 (ingredient = {
                   name: ingredient.toLowerCase(),
                   score: score
@@ -284,8 +289,10 @@ router.get("/suggestions", (req, res, next) => {
 
         recommendedIngredientsArray = Array.from(recommendedIngredients);
 
-        console.log(recommendedIngredients);
+        // console.log(recommendedIngredientsArray);
         recommendedIngredientsArray.sort((a, b) => b.score - a.score);
+        // console.log(recommendedIngredientsArray);
+
         getUnique(recommendedIngredientsArray, "name");
         res.locals.spotlightIngredientsArray = Array.from(ingredientsNeeded);
         res.locals.recommendedIngredientsArray = unique;

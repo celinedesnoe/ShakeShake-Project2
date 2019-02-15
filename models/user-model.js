@@ -13,7 +13,7 @@ const userSchema = new Schema(
       enum: ["normal", "admin"],
       default: "normal"
     },
-    ingredients: { type: Array },
+    ingredients: [{ type: String, match: /[^A-Z]+/ }],
     cocktailCreated: {
       type: Array,
       items: { type: Schema.Types.ObjectId, ref: "Cocktail" }

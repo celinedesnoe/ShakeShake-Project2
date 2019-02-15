@@ -32,17 +32,19 @@
 
 
       <button>Add to my bar !</button>
-      <h4>My bar :</h4>
-      <div class="containerIngredient">
+    </form>
 
-        {{#each userIngredientsArray}}
+    <h4>My bar :</h4>
+    <div class="containerIngredient">
 
-        <form action="/process-bar-remove" method="POST" id="user_ingredient">
-          <button name="ingredient" value="{{this}}">{{this}}</button>
-        </form>
+      {{#each userIngredientsArray}}
 
-        {{/each}}
-      </div>
+      <form action="/process-bar-remove" method="POST" id="user_ingredient">
+        <button name="ingredient" value="{{this}}">{{this}}</button>
+      </form>
+
+      {{/each}}
+    </div>
   </div>
 
 
