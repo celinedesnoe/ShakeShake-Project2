@@ -45,13 +45,18 @@
 
   </div>
 </div>
+{{!-- 
+######################################
+Results
+############################################## 
+--}}
 
 
 <main class="multi-col">
 
   {{#each drinkArray}}
 
-  {{#and true  this.userCreated}}
+  {{#and true this.userCreated}}
 
   <div class="tag-pink">
 
@@ -113,6 +118,9 @@
 
 
   <div class="tag-blue">
+
+    <img src=" {{this.strDrinkThumb}}" class="img-drink">
+
 
     <h3 class="d-flex justify-content-center text-center shadow-title">{{this.strDrink}}</h3>
 

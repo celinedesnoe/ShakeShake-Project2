@@ -1,5 +1,7 @@
 <h2 class="d-flex justify-content-center text-center title">The cocktails you can do with:</h2>
 
+<div class="d-flex justify-content-center text-center title">{{search_ingredient}}</div>
+
 <div class="d-flex flex-row justify-content-center">
 
   <div class="d-flex align-content-center flex-column col-5">
@@ -10,7 +12,7 @@
     </form>
   </div>
 
-  <div class="col-2">
+  <div class="d-flex justify-content-center col-2 title">
     <p>OR</p>
   </div>
 
@@ -99,7 +101,7 @@
 
   {{#each ingredArray}}
 
-  {{#and true  this.userCreated}}
+  {{#and true this.userCreated}}
 
   <div class="tag-pink">
 

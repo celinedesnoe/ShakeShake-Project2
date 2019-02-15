@@ -24,9 +24,11 @@ router.post(
   (req, res, next) => {
     const userLog = req.user._id;
 
-    if (strDrinkThumb) {
+    if (strDrinkThumb !== null) {
       var strDrinkThumb = req.file.secure_url;
     }
+
+    console.log("Lien Image", strDrinkThumb);
 
     const {
       strDrink,
@@ -84,6 +86,8 @@ router.post(
     });
 
     const userCreated = true;
+
+    console.log("userCreated is", userCreated);
 
     console.log("The array" + strIngredAll);
 
