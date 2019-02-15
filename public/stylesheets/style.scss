@@ -53,9 +53,6 @@ body {
 .login-home h1 {
   font-size: 5em;
 }
-homelogin {
-  width: "";
-}
 
 a {
   color: #00b7ff;
@@ -193,4 +190,18 @@ input {
   opacity: 0.8;
   border-radius: 1em;
   text-align: center;
+}
+
+.border-add-ingred {
+  border: 1px solid white;
+  border-radius: 10px;
+  text-align: center;
+}
+
+input {
+  margin-bottom: 2%;
+}
+
+h3 {
+  margin-bottom: 2%;
 }

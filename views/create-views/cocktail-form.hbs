@@ -1,82 +1,100 @@
-<h2>Add a cocktail</h2>
+<h2 class="d-flex justify-content-center text-center title">Add a cocktail</h2>
 
-<form action="/process-cocktail/{{cocktailItem._id}}" method="POST" enctype="multipart/form-data">
-  <div>
-    <label>
-      Drink Name:
-      <input type=" text" name="strDrink">
-    </label>
-  </div>
+<div class="container d-flex justify-content-around">
 
-  <div>
-    <label>
-      Picture:
-      <input type="file" name="strDrinkThumb" />
-    </label>
-  </div>
 
-  <div>
-    <label>
-      Ingredients and Measures:
-      <div>
-        <input type="text" name="strIngredient1" placeholder="Ingredient">
-        <input type="text" name="strMeasure1" placeholder="Measure">
+
+  <form action="/process-cocktail/{{cocktailItem._id}}" method="POST" enctype="multipart/form-data">
+    <div class="form-row">
+
+      <div class="col-3">
+        <label>
+          Drink Name:
+          <input type=" text" name="strDrink" class="form-control">
+        </label>
       </div>
 
-      <div>
-        <input type="text" name="strIngredient2" placeholder="Ingredient">
-        <input type="text" name="strMeasure2" placeholder="Measure">
+      <div class="col-3">
+        <label>
+          Picture:
+          <input type="file" name="strDrinkThumb" class="form-control" />
+        </label>
       </div>
 
-      <div class="new-field">
-        <input type="text" name="strIngredient3" placeholder="Ingredient">
-        <input type="text" name="strMeasure3" placeholder="Measure">
+      <div class="col-3">
+        <label>
+          Ingredients and Measures:
+
+          <div class=" row">
+            <div><input type="text" name="strIngredient1" placeholder="Ingredient"></div>
+            <div><input type="text" name="strMeasure1" placeholder="Measure"></div>
+          </div>
+
+          <div class="row ">
+            <div><input type="text" name="strIngredient2" placeholder="Ingredient"></div>
+            <div><input type="text" name="strMeasure2" placeholder="Measure"></div>
+          </div>
+
+          <div class="new-field row ">
+            <div> <input type="text" name="strIngredient3" placeholder="Ingredient"></div>
+            <div><input type="text" name="strMeasure3" placeholder="Measure"></div>
+          </div>
+
+          <div class="new-field row">
+            <div> <input type="text" name="strIngredient4" placeholder="Ingredient"></div>
+            <div> <input type="text" name="strMeasure4" placeholder="Measure"></div>
+          </div>
+
+          <div class="new-field row">
+            <div> <input type="text" name="strIngredient5" placeholder="Ingredient"></div>
+            <div><input type="text" name="strMeasure5" placeholder="Measure">
+            </div>
+          </div>
+
+          <div class="new-field row">
+            <div>><input type="text" name="strIngredient6" placeholder="Ingredient"></div>
+            <div><input type="text" name="strMeasure6" placeholder="Measure"></div>
+          </div>
+
+          <div class="new-field row">
+            <div><input type="text" name="strIngredient7" placeholder="Ingredient"></div>
+            <div><input type="text" name="strMeasure7" placeholder="Measure"></div>
+          </div>
+
+          <div class="new-field row">
+            <div> <input type="text" name="strIngredient8" placeholder="Ingredient"></div>
+            <div> <input type="text" name="strMeasure8" placeholder="Measure"></div>
+          </div>
+
+          <div class="new-field row">
+            <div> <input type="text" name="strIngredient9" placeholder="Ingredient"></div>
+            <div> <input type="text" name="strMeasure9" placeholder="Measure"></div>
+          </div>
+
+
+          <div class="border-add-ingred">
+            <a class="add-field">Add more ingredient</a>
+          </div>
+
+
+        </label>
       </div>
 
-      <div class="new-field">
-        <input type="text" name="strIngredient4" placeholder="Ingredient">
-        <input type="text" name="strMeasure4" placeholder="Measure">
+
+      <div class="col-3">
+        <label>
+          Instructions:
+          <div>
+            <input type="text" name="strInstructions" class="form-control">
+          </div>
+        </label>
       </div>
-
-      <div class="new-field">
-        <input type="text" name="strIngredient5" placeholder="Ingredient">
-        <input type="text" name="strMeasure5" placeholder="Measure">
-      </div>
-
-      <div class="new-field">
-        <input type="text" name="strIngredient6" placeholder="Ingredient">
-        <input type="text" name="strMeasure6" placeholder="Measure">
-      </div>
-
-      <div class="new-field">
-        <input type="text" name="strIngredient7" placeholder="Ingredient">
-        <input type="text" name="strMeasure7" placeholder="Measure">
-      </div>
-
-      <div class="new-field">
-        <input type="text" name="strIngredient8" placeholder="Ingredient">
-        <input type="text" name="strMeasure8" placeholder="Measure">
-      </div>
-
-      <div class="new-field">
-        <input type="text" name="strIngredient9" placeholder="Ingredient">
-        <input type="text" name="strMeasure9" placeholder="Measure">
-      </div>
-
-      <div>
-        <a class="add-field">Add more ingredient</a>
-      </div>
-
-    </label>
-
-  </div>
-
-  <label>
-    Instructions:
-    <div>
-      <input type="text" name="strInstructions">
     </div>
-  </label>
 
-  <button> Add it </button>
+    <div class="row d-flex justify-content-center">
+      <button> Add it </button>
+    </div>
+
+</div>
 </form>
+</div>

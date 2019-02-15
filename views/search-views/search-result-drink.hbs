@@ -45,6 +45,7 @@
 
   </div>
 </div>
+
 {{!-- 
 ######################################
 Results
@@ -56,7 +57,7 @@ Results
 
   {{#each drinkArray}}
 
-  {{#and true this.userCreated}}
+  {{#and true  this.userCreated}}
 
   <div class="tag-pink">
 
@@ -71,7 +72,7 @@ Results
 
         {{#each this.strIngredMeasure}}
 
-        <p>
+        <p class="ingred-measure">
           {{this.Ingred}}
         </p>
 
@@ -83,7 +84,7 @@ Results
 
 
         {{#each this.strIngredMeasure}}
-        <p>
+        <p class="ingred-measure">
           {{this.Measure}}
         </p>
         {{/each}}
@@ -98,11 +99,14 @@ Results
       <p class="text-center font-light">{{this.strInstructions}}</p>
     </div>
 
-    {{!-- Link to the EDIT page (ID in the address to know which book to edit) --}}
-    <a href="/mycocktails/{{this.strDrink}}/edit">Edit</a>
+    <div class="d-flex justify-content-around">
+      {{!-- Link to the EDIT page (ID in the address to know which book to edit) --}}
+      <div><button><a href="/mycocktails/{{this.strDrink}}/edit" class="font-light no-link">Edit</a></button></div>
 
-    {{!-- Link to the DELETE route (ID in address to know which book to delete) --}}
-    <a href="/mycocktails/{{this.strDrink}}/delete">Delete</a>
+      {{!-- Link to the DELETE route (ID in address to know which book to delete) --}}
+      <div><button><a href="/mycocktails/{{this.strDrink}}/delete" class="font-light no-link">Delete</a></button></div>
+
+    </div>
 
 
 
@@ -131,7 +135,7 @@ Results
 
         {{#each this.strIngredMeasure}}
 
-        <p>
+        <p class="ingred-measure">
           {{this.Ingred}}
         </p>
 
@@ -142,7 +146,7 @@ Results
       <div class=" div-marg">
 
         {{#each this.strIngredMeasure}}
-        <p>
+        <p class="ingred-measure">
           {{this.Measure}}
         </p>
         {{/each}}
